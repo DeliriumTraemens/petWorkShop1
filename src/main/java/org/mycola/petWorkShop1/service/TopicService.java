@@ -26,6 +26,7 @@ public class TopicService {
 		newTopic.setName(name);
 		newTopic.setDescription(description);
 		newTopic.setCreationDate(LocalDateTime.now());
+		newTopic.setRoot(true);
 		return topicRepo.save(newTopic);
 	}
 }
