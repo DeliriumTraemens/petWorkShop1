@@ -1,0 +1,48 @@
+<template>
+    <v-container>
+        <template>
+            <v-expansion-panels>
+                <v-expansion-panel
+                        v-for="(item,i) in topics"
+                        :key="i"
+                >
+                    <v-expansion-panel-header>
+                        {{item.name}}
+                    </v-expansion-panel-header>
+                    <v-expansion-panel-content>
+                        {{item.description}}
+                        <v-text-field label="Input name" v-model="topicName"></v-text-field>
+                        <p>{{topicName}}</p>
+
+<!--                       <DialogNewTopic/>-->
+
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
+            </v-expansion-panels>
+        </template>
+    </v-container>
+</template>
+
+<script>
+
+    // import DialogNewTopic from "./DialogNewTopic.vue";
+
+    export default {
+        name: "ExpList",
+        props:{
+            topics:[]
+        },
+        components: {
+            // DialogNewTopic
+        },
+        data() {
+            return{
+                topicName:''
+            }
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>
