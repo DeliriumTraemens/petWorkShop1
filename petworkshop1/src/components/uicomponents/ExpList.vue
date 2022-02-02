@@ -10,11 +10,11 @@
                         {{item.name}}
                     </v-expansion-panel-header>
                     <v-expansion-panel-content>
-                        {{item.description}}
+<!--                        {{item.description}}-->
+                        <p>Add SubTopic</p>
                         <v-text-field label="Input name" v-model="topicName"></v-text-field>
-                        <p>{{topicName}}</p>
+                        <v-btn x-small>Submit</v-btn>
 
-<!--                       <DialogNewTopic/>-->
 
                     </v-expansion-panel-content>
                 </v-expansion-panel>
