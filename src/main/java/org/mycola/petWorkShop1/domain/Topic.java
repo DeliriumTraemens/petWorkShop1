@@ -1,9 +1,11 @@
 package org.mycola.petWorkShop1.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,6 +24,9 @@ public class Topic {
 	
 	private boolean root=false;
 	private boolean active=true;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+	private LocalDateTime creationDate;
 	
 	@JsonIgnore
 	@ManyToOne
