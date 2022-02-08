@@ -1,8 +1,12 @@
 package org.mycola.petWorkShop1.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,6 +15,12 @@ import java.util.Set;
 
 @Entity
 @Data
+@ToString(of = {"id", "name", "creationDate"})
+@EqualsAndHashCode(of = {"id"})
+@JsonIdentityInfo(
+		generator= ObjectIdGenerators.PropertyGenerator.class,
+		property="id"
+)
 public class Topic {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

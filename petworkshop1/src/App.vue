@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <v-app app id="app">
     <MyScreen/>
-  </div>
+  </v-app>
 </template>
 
 <script>

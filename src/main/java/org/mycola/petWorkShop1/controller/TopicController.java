@@ -22,6 +22,11 @@ public class TopicController {
 		return topicService.getTopicList();
 	}
 	
+	@GetMapping("/{id}")
+	public Topic getTopicById(@PathVariable(name = "id")Long id){
+		return topicService.getTopicById(id);
+	}
+	
 	@PostMapping
 	public Topic createTopic(
 			@RequestParam("name")String name,
@@ -29,6 +34,14 @@ public class TopicController {
 //			@RequestParam("parentTop")Long parentTop
 	                        ){
 		return topicService.saveTopic(name,description);
+	}
+	
+	@PostMapping("/newsub")
+	public Topic addNewSubTopic(
+			@RequestParam("parentId")Long id,
+			@RequestParam("name")String name,
+	        @RequestParam("description")String description){
+		return topicService.addNewSubTopic(id,name,description);
 	}
 	
 }

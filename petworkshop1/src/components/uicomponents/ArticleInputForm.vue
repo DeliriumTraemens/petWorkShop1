@@ -1,27 +1,28 @@
 <template>
-    <div >
+    <div class="mb-2">
         <v-btn
                 x-small
-                color="purple"
-                dark
+                color="orange"
+                darker-2
                 @click.stop="dialog = true"
         >
-            Add
+            Add New Article
         </v-btn>
 
         <v-dialog
                 v-model="dialog"
-                max-width="290"
+                max-width="600px"
+                height="600px"
         >
             <v-card>
                 <v-card-title class="text-h5">
-                   {{dataItem.name}} id # {{dataItem.id}}
+                    <h3>Новая статья в теме # {{dataItem}}</h3>
                 </v-card-title>
 
                 <v-card-text>
-                    {{dataItem.description}}
-                    <v-text-field label="Input Name" v-model="topicName"/>
-                    <v-text-field label="Input Description" v-model="topicDescription"/>
+
+                    <v-text-field label="Input Name" v-model="articleName"/>
+                    <v-textarea label="Input Description" v-model="articleDescription"/>
                 </v-card-text>
 
                 <v-card-actions>
@@ -32,13 +33,13 @@
                             text
                             @click="dialog = false"
                     >
-                        Disagree
+                        Cancel
                     </v-btn>
 
                     <v-btn
                             color="green darken-1"
                             text
-                            @click="addNewSubTopic(dataItem.id)"
+                            @click="addNewArticle()"
                     >
                         Submit
                     </v-btn>
@@ -47,38 +48,41 @@
         </v-dialog>
     </div>
 </template>
-
 <script>
     import axios from 'axios'
     export default {
-        name: "DialogNewTopic",
+        name: "ArticleInputForm",
+
         props: {
-            dataItem:[]
+            dataItem:Number
         },
         data () {
             return {
                 dialog: false,
-                topicName:'',
-                topicDescription:'',
-                categoryUrl: 'http://localhost:9090/topic/newsub',
+                articleName:'',
+                articleDescription:'',
+                articleUrl: 'http://localhost:9090/article',
 
             }
         },
         methods: {
-            addNewSubTopic(id){
+            addNewArticle(){
                 this.dialog = false
                 // alert(id+this.topicName+' '+this.topicDescription)
+                let id = String(this.dataItem)
                 const fd=new FormData();
                 fd.append('parentId',id);
-                fd.append('name',this.topicName)
-                fd.append('description',this.topicDescription)
-                axios.post(this.categoryUrl ,fd).then(res=>{
+                fd.append('name',this.articleName)
+                fd.append('description',this.articleDescription)
+                axios.post(this.articleUrl ,fd).then(res=>{
                     console.log(res)
                 })
             }
         }
     }
 </script>
+
+
 
 <style scoped>
 

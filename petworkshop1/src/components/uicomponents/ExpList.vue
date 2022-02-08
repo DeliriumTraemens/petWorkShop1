@@ -10,11 +10,13 @@
                         {{item.name}}
                     </v-expansion-panel-header>
                     <v-expansion-panel-content>
-<!--                        {{item.description}}-->
-                        <p>Add SubTopic</p>
-                        <v-text-field label="Input name" v-model="topicName"></v-text-field>
-                        <v-btn x-small>Submit</v-btn>
-
+                        <div v-if="item.children" >
+                            <div v-for="(child,i) in item.children" :key="i">
+                                <div>{{child.name}}</div>
+                                <ExpList :items="child"/>
+                            </div>
+                        <DialogNewTopic :dataItem="item"/>
+                        </div>
 
                     </v-expansion-panel-content>
                 </v-expansion-panel>
@@ -27,13 +29,14 @@
 
     // import DialogNewTopic from "./DialogNewTopic.vue";
 
+    import DialogNewTopic from "./DialogNewTopic.vue";
     export default {
         name: "ExpList",
         props:{
             topics:[]
         },
         components: {
-            // DialogNewTopic
+            DialogNewTopic
         },
         data() {
             return{

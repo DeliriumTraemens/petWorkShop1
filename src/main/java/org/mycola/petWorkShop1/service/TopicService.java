@@ -18,7 +18,7 @@ public class TopicService {
 	}
 	
 	public List<Topic> getTopicList() {
-		return topicRepo.findAll();
+		return topicRepo.findAllByRoot(true);
 	}
 	
 	public Topic saveTopic(String name, String description) {
@@ -28,5 +28,21 @@ public class TopicService {
 		newTopic.setCreationDate(LocalDateTime.now());
 		newTopic.setRoot(true);
 		return topicRepo.save(newTopic);
+	}
+	
+	public Topic addNewSubTopic(Long id, String name, String description) {
+		Topic fromDb=topicRepo.findById(id).get();
+		Topic newSubTopic = new Topic();
+			newSubTopic.setName(name);
+			newSubTopic.setDescription(description);
+			newSubTopic.setCreationDate(LocalDateTime.now());
+			newSubTopic.setParentTop(id);
+			newSubTopic.setParTop(fromDb);
+		return topicRepo.save(newSubTopic);
+		
+	}
+	
+	public Topic getTopicById(Long id) {
+		return topicRepo.findById(id).get();
 	}
 }
