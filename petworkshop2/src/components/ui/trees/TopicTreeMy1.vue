@@ -36,7 +36,8 @@
         },
         methods: {
             showItem(items){
-                alert(items)
+                // alert('TopicTreeMy1')
+                // alert(items.name)
                 this.$emit("showItem",items)
             }
         },

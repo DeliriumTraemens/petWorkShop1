@@ -19,6 +19,8 @@
         },
         methods: {
             sendup(item){
+                // alert('TopicTreeRoot method sendup'+item.name)
+                console.log(item)
                 this.$emit('sendup', item)
             }
         }

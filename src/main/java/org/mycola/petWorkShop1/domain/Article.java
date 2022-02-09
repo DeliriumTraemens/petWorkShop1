@@ -27,7 +27,7 @@ public class Article {
 	
 	
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToOne
 	private Topic artTopic;
 	

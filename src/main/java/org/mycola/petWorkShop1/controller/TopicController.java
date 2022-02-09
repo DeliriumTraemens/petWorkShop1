@@ -28,12 +28,11 @@ public class TopicController {
 	}
 	
 	@PostMapping
-	public Topic createTopic(
+	public Topic createRootTopic(
 			@RequestParam("name")String name,
 			@RequestParam("description")String description
-//			@RequestParam("parentTop")Long parentTop
 	                        ){
-		return topicService.saveTopic(name,description);
+		return topicService.saveRootTopic(name, description);
 	}
 	
 	@PostMapping("/newsub")

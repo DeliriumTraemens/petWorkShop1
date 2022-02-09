@@ -21,7 +21,7 @@ public class TopicService {
 		return topicRepo.findAllByRoot(true);
 	}
 	
-	public Topic saveTopic(String name, String description) {
+	public Topic saveRootTopic(String name, String description) {
 		Topic newTopic=new Topic();
 		newTopic.setName(name);
 		newTopic.setDescription(description);

@@ -37,7 +37,7 @@
         methods: {
             showInfo(id){
                 this.$emit("showtopic",id)
-                // alert(item);
+                alert(id);
             }
         }
     }
