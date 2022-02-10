@@ -21,8 +21,8 @@
                 </v-card-title>
 
                 <v-card-text>
-                  <v-text-field label="Name"></v-text-field>
-                  <v-text-field label="Description"></v-text-field>
+                    <v-text-field label="Name" v-model="newSubTopicName"></v-text-field>
+                    <v-text-field label="Description" v-model="newSubTopicDescription"></v-text-field>
                     Lorem ipsum dolor sit amet.
                 </v-card-text>
 
@@ -30,7 +30,7 @@
                     <v-spacer></v-spacer>
 
                     <v-btn
-                            color="green darken-1"
+                            color="warning"
                             text
                             @click="dialog = false"
                     >
@@ -40,7 +40,7 @@
                     <v-btn
                             color="green darken-1"
                             text
-                            @click="dialog = false"
+                            @click="createSubTopic(topicData.id)"
                     >
                         Submit
                     </v-btn>
@@ -51,13 +51,39 @@
 </template>
 
 <script>
+    import axios from "axios";
+
+
     export default {
         name: "TopicDialogMy1",
-        data () {
+        components: {},
+        props: {
+            topicData: []
+        },
+        data() {
             return {
                 dialog: false,
+                newSubTopicName: '',
+                newSubTopicDescription: '',
+                subtopicUrl: 'http://localhost:9090/topic/newsub'
             }
         },
+        methods: {
+           async createSubTopic(id) {
+                this.dialog = false
+                console.log('Current topic Id')
+                console.log(id)
+                const fd = new FormData()
+                fd.append('parentId',id)
+                fd.append('name', this.newSubTopicName)
+                fd.append('description', this.newSubTopicDescription)
+                axios.post(this.subtopicUrl, fd).then(res =>{
+                    console.log(res)
+                    /*Add event for the topic list refreshing */
+                    this.$emit('updateTopicList')
+                })
+            }
+        }
     }
 </script>
 

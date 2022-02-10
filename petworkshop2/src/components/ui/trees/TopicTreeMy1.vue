@@ -4,7 +4,7 @@
                 <div @click="showItem(items)">{{items.name}}</div>
 
                 <v-layout align-start justify-end>
-                    <TopicDialogMy1/>
+                    <TopicDialogMy1 :topicData="items" @updateTopicList="updateTopicList"/>
 
                     <v-btn icon>
                         <v-icon small dark>mdi-minus</v-icon>
@@ -39,6 +39,9 @@
                 // alert('TopicTreeMy1')
                 // alert(items.name)
                 this.$emit("showItem",items)
+            },
+          async  updateTopicList(){
+                this.$emit("updateTopicList")
             }
         },
         created () {

@@ -15,20 +15,12 @@
           width="40"
         />
 
-<!--        <v-img-->
-<!--          alt="Vuetify Name"-->
-<!--          class="shrink mt-1 hidden-sm-and-down"-->
-<!--          contain-->
-<!--          min-width="100"-->
-<!--          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"-->
-<!--          width="100"-->
-<!--        />-->
         <v-app-bar-title>PetWorkShop</v-app-bar-title>
       </div>
 
       <v-spacer></v-spacer>
 
-      <v-btn fab @click="showArticles" color="primary">Articles</v-btn>
+      <v-btn fab @click="showArticles" color="primary" >Articles</v-btn>
       <v-btn fab @click="showTopics" color="primary">Topics</v-btn>
 
 

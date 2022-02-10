@@ -6,7 +6,7 @@
             </v-expansion-panel-header>
             <v-expansion-panel-content>
 
-                <TopicTreeRoot :items="items" @sendup="sendup"/>
+                <TopicTreeRoot :items="items" @sendup="sendup" @updateTopicList="updateTopicList"/>
 
             </v-expansion-panel-content>
         </v-expansion-panel>
@@ -24,6 +24,9 @@
         methods: {
             sendup(item){
                 this.$emit('sendup', item)
+            },
+           async updateTopicList(){
+                this.$emit('updateTopicList')
             }
         }
     }

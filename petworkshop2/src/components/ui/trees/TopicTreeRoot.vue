@@ -3,6 +3,7 @@
         <TopicTreeMy1 v-for="(item,i) in items" :key="i"
                       :items="item"
                       @showItem="sendup"
+                      @updateTopicList="updateTopicList"
         />
     </v-container>
 </template>
@@ -22,6 +23,9 @@
                 // alert('TopicTreeRoot method sendup'+item.name)
                 console.log(item)
                 this.$emit('sendup', item)
+            },
+            async updateTopicList(){
+                this.$emit('updateTopicList')
             }
         }
     }
