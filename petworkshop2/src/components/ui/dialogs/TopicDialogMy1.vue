@@ -51,6 +51,8 @@
 </template>
 
 <script>
+    import {mapActions} from 'vuex'
+
     import axios from "axios";
 
 
@@ -69,6 +71,7 @@
             }
         },
         methods: {
+            ...mapActions(['updateTopicList']),
            async createSubTopic(id) {
                 this.dialog = false
                 console.log('Current topic Id')
@@ -77,11 +80,13 @@
                 fd.append('parentId',id)
                 fd.append('name', this.newSubTopicName)
                 fd.append('description', this.newSubTopicDescription)
-                axios.post(this.subtopicUrl, fd).then(res =>{
+
+                await axios.post(this.subtopicUrl, fd).then(res =>{
                     console.log(res)
                     /*Add event for the topic list refreshing */
-                    this.$emit('updateTopicList')
+                    // this.$emit('updateTopicList')
                 })
+                await this.updateTopicList()
             }
         }
     }

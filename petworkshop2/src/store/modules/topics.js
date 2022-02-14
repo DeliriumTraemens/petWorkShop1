@@ -2,10 +2,10 @@ import axios from "axios";
 
 export default {
     state: {
-        topicsTotalList: [
-        ],
+        topicsTotalList: [],
 
         selectedTopic:[],
+
         selectedTopicId:5,
 
         topicUrl: 'http://localhost:9090/topic'
@@ -22,6 +22,7 @@ export default {
         getTopicsSelectedTopicId(state){
             return state.selectedTopicId
         },
+
         getTopicsSelectedTopic(state){
             return state.selectedTopic
         }
@@ -54,6 +55,7 @@ export default {
                     console.log(totalTopics)
                     context.commit('topicTotalListMutation', totalTopics)
                 })
+                    // alert('Update TOPIC LIST')
         },
 
         setSelectedTopic(context, arg){

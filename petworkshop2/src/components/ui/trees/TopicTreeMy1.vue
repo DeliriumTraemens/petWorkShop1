@@ -1,7 +1,9 @@
 <template>
         <div class="mytree1">
             <v-layout justify-space-between>
-                <div @click="showItem(items)">{{items.name}}</div>
+                <div @click="showItem(items)" >{{items.name}}
+
+                </div>
 
                 <v-layout align-start justify-end>
                     <TopicDialogMy1 :topicData="items" @updateTopicList="updateTopicList"/>
@@ -19,9 +21,13 @@
             </v-layout>
 
             <div class="ml-4" v-if="items.children" >
+                <div >
+
                     <TopicTreeMy1 v-for="item in items.children" :key="item.id"
                                   :items="item"
-                                    @showItem="showItem"/>
+                                  :class="{isActive}"
+                                  @showItem="showItem"/>
+                </div>
             </div>
         </div>
 </template>
@@ -34,11 +40,22 @@
         props: {
             items: []
         },
+        data() {
+            return{
+                isActive:true
+
+            }
+        },
         methods: {
             showItem(items){
                 // alert('TopicTreeMy1')
                 // alert(items.name)
+                this.isActive=false;
                 this.$emit("showItem",items)
+            },
+            collapse(){
+                this.isActive=false;
+
             },
           async  updateTopicList(){
                 this.$emit("updateTopicList")
@@ -58,4 +75,9 @@
     height:50%;
     text-vertical-align: center;
 }
+
+.isActive{
+    display: none;
+}
+
 </style>

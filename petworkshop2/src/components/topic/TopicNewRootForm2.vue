@@ -34,20 +34,6 @@
             ...mapActions(['createNewRootTopic']),
             submitNewRootTopic(){
                 this.createNewRootTopic(this.topic)
-                // const fd = new FormData()
-                // fd.append('name', this.newTopicName)
-                // fd.append('description', this.newTopicDescription)
-                // axios.post(this.topicUrl, fd)
-                //     .then(res=>{
-                //         console.log(res)
-                //         /*Add TopicList Update*/
-                //     })
-                // this.newTopicName=''
-                // this.newTopicDescription=''
-                // console.log('New TopicName Data')
-                // console.log(this.topic)
-                // console.log(this.topic.name)
-                // console.log(this.topic.description)
             }
         }
     }

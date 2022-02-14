@@ -9,6 +9,9 @@
                     <TopicExpPan2 v-for="(child, i) in data.children" :key="i"
                                   :data="child"/>
                 </div>
+                <div>
+                    <v-btn x-small color="warning" >Blah</v-btn>
+                </div>
             </v-expansion-panel-content>
         </v-expansion-panel>
     </v-expansion-panels>
