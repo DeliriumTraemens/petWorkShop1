@@ -3,12 +3,12 @@
         <!--Container form node Element-->
         <div class="node"
              :style="{'margin-left': `${depth * 15}px`}"
-             @click="nodeClicked()">
+             @click="nodeClicked(node)">
 <!--            <span v-if="hasChildren" class="type">-->
-            <span v-if="node.children.length>0" class="type">
-                {{expanded ? '&#9660;' : '&#9658;'}}
+            <span v-if="node.children.length>0" class="type" style="font-size:10px; color: darkorange">
+                {{ expanded ? '&#9660;' : '&#9658;'}}
             </span>
-            <span v-else> &#9671; </span>
+            <span v-else style="font-size:10px; color: mediumblue"> &#9671; </span>
                 {{node.name}} {{depth}}
         </div>
         <!--Container form recursion Traverse-->
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+    import {mapActions} from 'vuex';
     export default {
         name: "TreeBrowser",
         props: {
@@ -40,8 +41,10 @@
             }
         },
         methods: {
-            nodeClicked() {
+            ...mapActions(['updateTopicList','setSelectedTopic' ,'incrementSelectedId', 'setSelectedTopicId']),
+            nodeClicked(node) {
                 this.expanded = !this.expanded
+                this.setSelectedTopic(node)
             }
         },
         computed: {

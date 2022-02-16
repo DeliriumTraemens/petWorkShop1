@@ -1,28 +1,32 @@
 <template>
-    <v-container>
+    <div>
         <v-row>
             <v-col cols="3">
                 <h2>Col1 Topics</h2>
 
-<!--                <TopicsExpansion1 :items="topicList"  @sendup="getdata"/>-->
-                <TopicsExpansion1 :items="getTopicsTotalList"  @sendup="getdata"/>
+                <TopicsExpansion1 :items="getTopicsTotalList"  />
                 <hr>
-<!--                <TopicTreeRoot :items="topicList" @sendup="getdata" @updateTopicList="updateTopicList" />-->
-
-                <TopicTreeRoot :items="getTopicsTotalList" @sendup="getdata" @updateTopicList="updateTopicList" />
+                <div>TopicTreeRoot</div>
+                <hr class="mb-3">
+                <TopicTreeRoot :items="getTopicsTotalList"  />
 
                 <hr>
+                <div class="mt-3">TopicNewRootForm</div>
                 <TopicNewRootForm />
+                <div class="cont"></div>
             </v-col>
             <v-col cols="6">
                 <div>
                 <v-row>
                     <v-col cols="12"> <H2>Col 2</H2>
+                        <hr>
+<!--                        <TopicCard1 :data="currentTopic"/>-->
+                        <TopicCard1 :data="getSelectedTopic"/>
                         <!--ArticlesList-->
                         <ArticleList
-                                :name="currentTopic.name"
-                                :topicID="currentTopic.id"
-                                :articlesList="currentTopic.articleSet"/>
+                                :name="getSelectedTopic.name"
+                                :topicID="getSelectedTopic.id"
+                                :articlesList="getSelectedTopic.articleSet"/>
                     </v-col>
                 </v-row>
                 </div>
@@ -30,17 +34,11 @@
             <v-col> <H2>Col 3</H2>
                 <div class="mb-4">Topics 2</div>
                 <hr class="mb-4">
-                <div v-for="(topic, i) in getTopicsTotalList" :key="i" >
-                    <div class="mt-4">
-                        <h4>{{topic.name}}</h4>
-                    </div>
-                    <div class="ml-3" v-for="item in topic.children" :key="item.id">
-                        {{item.name}}
-                    </div>
-                </div>
+
+
             </v-col>
         </v-row>
-    </v-container>
+    </div>
 </template>
 
 <script>
@@ -51,10 +49,12 @@
     import TopicsExpansion1 from "../components/ui/lists/TopicsExpansion1";
     import ArticleList from "../components/article/ArticleList";
     import TopicNewRootForm from "../components/topic/TopicNewRootForm";
+    import TopicCard1 from "../components/ui/cards/TopicCard1";
     // import TopicDialogMy1 from "../components/ui/dialogs/TopicDialogMy1";
     export default {
         name: "TopicsPage",
         components: {
+            TopicCard1,
             TopicNewRootForm,
             ArticleList,
             TopicsExpansion1,
@@ -78,7 +78,7 @@
         //         return this.$store.getters.getTopicsTotalList
         //     }
         // },
-        computed: mapGetters(['getTopicsTotalList']),
+        computed: mapGetters(['getTopicsTotalList', 'getSelectedTopic']),
         methods: {
 
             loadMainTopicList(){
@@ -109,7 +109,7 @@
             // this.topicList=[]
             // this.loadMainTopicList()
 
-            await this.$store.dispatch('updateTopicList')
+            // await this.$store.dispatch('updateTopicList')
         }
     }
 </script>
@@ -117,5 +117,10 @@
 <style scoped>
 .dialogwrap{
     border: 1px solid
+}
+.cont{
+    margin-top: 20px;
+    padding: 20px;
+    background-color: darkorange;
 }
 </style>

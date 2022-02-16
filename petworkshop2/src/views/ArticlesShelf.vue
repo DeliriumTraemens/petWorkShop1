@@ -33,7 +33,7 @@
                       </v-card-title>
                       <v-card-text>
                             <div v-if="getSelectedTopic.children" class="ml-4">
-                                <div v-for="(subTopic, i) in getSelectedTopic.children" :key="i">
+                                <div v-for="subTopic in getSelectedTopic.children" :key="subTopic.id">
                                     {{subTopic.id}}
                                     {{subTopic.name}}
                                 </div>
@@ -45,13 +45,12 @@
                   </v-card>
 
                     <div v-if="getSelectedTopic.articleSet">
-                        <div v-for="(article, i) in getSelectedTopic.articleSet" :key="i" class="mt-3">
+                        <div v-for="article in getSelectedTopic.articleSet" :key="article.id" class="mt-3">
                             <v-card class="py-2 px-2">
                                 <v-card-title>
                                     {{article.name}} {{article.id}}
                                 </v-card-title>
                                 <v-card-text v-html="article.description">
-
                                 </v-card-text>
                                 <v-card-actions>
                                     <v-btn x-small color="warning">Edit</v-btn>
@@ -71,8 +70,10 @@
                 <hr class="mb-5">
                 <!-- Tree Browser -->
                 <!--                <TreeBrowser :node="root" />-->
+                <div>TreeBrowser</div>
+                <hr class="mb-4">
                 <TreeBrowser
-                        v-for="(node, i) in getTopicsTotalList" :key="i"
+                        v-for="node in getTopicsTotalList" :key="node.id"
                         :node="node" />
                 <hr class="mb-5">
 
@@ -97,45 +98,7 @@
             return{
                 value: '',
                 isActive:false,
-                root:{
-                    name: '/',
-                    children: [
-                        {
-                            name: 'workspace',
-                            children: [
-                                {
-                                    name: 'table',
-                                    children: []
-                                },
-                                {
-                                    name: 'comp',
-                                    children: []
-                                },
-                            ]
-                        },
-                        {
-                            name: 'songs',
-                            children: [
-                                {
-                                    name: 'rock',
-                                    children: []
-                                },
-                                {
-                                    name: 'folk',
-                                    children: []
-                                },
-                                {
-                                    name: 'country',
-                                    children: []
-                                },
-                            ]
-                        },
-                        {
-                            name: 'instrumental',
-                            children: []
-                        },
-                    ]
-                },
+
             }
         },
         computed: mapGetters(['getTopicsTotalList','getSelectedTopic' ,'getTopicsSelectedTopicId', 'getTopicsSelectedTopic']),

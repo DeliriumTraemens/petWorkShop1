@@ -14,7 +14,7 @@
         <v-dialog
                 v-model="dialog"
                 max-width="390"
-         >
+        >
             <v-card>
                 <v-card-title class="text-h5">
                     Input Topic Data For {{newSubTopic.parentId}}
@@ -47,58 +47,27 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
+
     </div>
 </template>
 
 <script>
-    import {mapActions} from 'vuex'
-
-    // import axios from "axios";
-
-
+    import {mapGetters} from 'vuex';
     export default {
-        name: "TopicDialogMy1",
-        components: {},
-        props: {
-            topicData: []
-        },
+        name: "TopicEdit1",
         data() {
-            return {
+            return{
                 dialog: false,
-                newSubTopic:{
-                    parentId: this.topicData.id,
-                    name:'',
-                    description:'',
-                    url: 'http://localhost:9090/topic/newsub'
-                },
+                
             }
         },
+        computed: {
+            ...mapGetters(['getSelectedTopic'])
+        },
         methods: {
-            ...mapActions(['updateTopicList', 'createNewSubTopic']),
+            editTopic(){
 
-           async createSubTopic2(){
-               this.dialog = false
-               this.newSubTopic.parentId = String(this.topicData.id)
-               await this.createNewSubTopic(this.newSubTopic)
-
-           },
-
-           // async createSubTopic(id) {
-           //      this.dialog = false
-           //      console.log('Current topic Id')
-           //      console.log(id)
-           //      const fd = new FormData()
-           //      fd.append('parentId',id)
-           //      fd.append('name', this.newSubTopicName)
-           //      fd.append('description', this.newSubTopicDescription)
-           //
-           //      await axios.post(this.subtopicUrl, fd).then(res =>{
-           //          console.log(res)
-           //          /*Add event for the topic list refreshing */
-           //          // this.$emit('updateTopicList')
-           //      })
-           //      await this.updateTopicList()
-           //  }
+            }
         }
     }
 </script>

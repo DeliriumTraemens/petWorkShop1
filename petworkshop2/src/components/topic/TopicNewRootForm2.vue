@@ -34,6 +34,8 @@
             ...mapActions(['createNewRootTopic']),
             submitNewRootTopic(){
                 this.createNewRootTopic(this.topic)
+                this.topic.name = ''
+                this.topic.description = ''
             }
         }
     }

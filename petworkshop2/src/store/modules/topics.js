@@ -8,6 +8,18 @@ export default {
 
         selectedTopicId:5,
 
+        newTopic:{
+            name:'',
+            description:''
+        },
+
+        newSubTopic:{
+            parentId:'',
+            name:'',
+            description:'',
+            url:''
+        },
+
         topicUrl: 'http://localhost:9090/topic'
     },
     getters: {
@@ -25,6 +37,14 @@ export default {
 
         getTopicsSelectedTopic(state){
             return state.selectedTopic
+        },
+
+        getNewTopic(state){
+            return state.newTopic
+        },
+
+        getNewSubTopic(state){
+            return state.newSubTopic
         }
     },
     mutations: {
@@ -42,6 +62,14 @@ export default {
 
         selectedTopicIdSetterMutation(state, arg){
             state.selectedTopicId=arg
+        },
+
+        newTopicMutation(state, arg){
+            state.newTopic=arg
+        },
+
+        newSubTopicMutation(state, arg){
+            state.newSubTopic = arg
         }
 
 
@@ -73,6 +101,19 @@ export default {
 
              await context.dispatch('updateTopicList')
 
+        },
+
+        async createNewSubTopic(context, arg){
+            context.commit('newSubTopicMutation', arg)
+            const fd = new FormData()
+            fd.append('parentId', context.state.newSubTopic.parentId)
+            fd.append('name', context.state.newSubTopic.name)
+            fd.append('description', context.state.newSubTopic.description)
+
+            await axios.post(context.state.newSubTopic.url, fd).then(res =>{
+                console.log(res.data)
+            })
+            await context.dispatch('updateTopicList')
         },
 
         incrementSelectedId(context){

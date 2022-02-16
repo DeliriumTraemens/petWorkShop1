@@ -2,8 +2,7 @@
     <v-container>
         <TopicTreeMy1 v-for="(item,i) in items" :key="i"
                       :items="item"
-                      @showItem="sendup"
-                      @updateTopicList="updateTopicList"
+
         />
     </v-container>
 </template>
