@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-row>
-            <v-col cols="3">
+            <v-col cols="4">
                 <h2>Col1 Topics</h2>
 
                 <TopicsExpansion1 :items="getTopicsTotalList"  />
@@ -81,21 +81,8 @@
         computed: mapGetters(['getTopicsTotalList', 'getSelectedTopic']),
         methods: {
 
-            loadMainTopicList(){
-                axios.get(this.topicUrl)
-                .then(res=>{
-                    this.topicList=res.data;
-                    console.log(this.topicList)
-                })
-            },
-            getdata(item){
-                // alert('TopicPage getdata')
-                this.currentTopic=item
-                console.log('CurrentTopic')
-                console.log(this.currentTopic)
-            },
+
             updateTopicList(){
-                // this.loadMainTopicList()
                 axios.get(this.topicUrl)
                     .then(res=>{
                         this.topicList=[]
@@ -106,10 +93,8 @@
 
         },
          async mounted() {
-            // this.topicList=[]
-            // this.loadMainTopicList()
 
-            // await this.$store.dispatch('updateTopicList')
+            await this.$store.dispatch('updateTopicList')
         }
     }
 </script>

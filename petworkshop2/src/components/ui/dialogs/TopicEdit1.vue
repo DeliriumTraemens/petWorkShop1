@@ -3,10 +3,10 @@
 
         <div class="pt-0.5">
             <v-btn icon
-                   color="indigo"
+                   color="warning"
                    @click.stop="dialog = true">
                 <v-icon small dark>
-                    mdi-plus
+                    mdi-pencil
                 </v-icon>
             </v-btn>
         </div>
@@ -17,12 +17,12 @@
         >
             <v-card>
                 <v-card-title class="text-h5">
-                    Input Topic Data For {{newSubTopic.parentId}}
+                    Input Topic Data For dd{{topicData.id}}
                 </v-card-title>
 
                 <v-card-text>
-                    <v-text-field label="Name" v-model="newSubTopic.name"></v-text-field>
-                    <v-text-field label="Description" v-model="newSubTopic.description"></v-text-field>
+                    <v-text-field label="Name" v-model="topic.name"></v-text-field>
+                    <v-text-field label="Description" v-model="topic.description"></v-text-field>
                     Lorem ipsum dolor sit amet.
                 </v-card-text>
 
@@ -40,7 +40,7 @@
                     <v-btn
                             color="green darken-1"
                             text
-                            @click="createSubTopic2()"
+                            @click="saveChanges"
                     >
                         Submit
                     </v-btn>
@@ -52,22 +52,44 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex';
+    import {mapActions} from 'vuex';
     export default {
         name: "TopicEdit1",
+        props: {
+            topicData:{}
+        },
         data() {
             return{
                 dialog: false,
+                // name: null,
+                // description: null,
+                topic:{
+                    // id: this.topicData.id,
+                    id: String,
+                    name: String,
+                    description: String
+                }
                 
             }
         },
         computed: {
-            ...mapGetters(['getSelectedTopic'])
+
         },
         methods: {
-            editTopic(){
+            ...mapActions(['editTopicAction']),
+            editTopicVModel(){
+                this.topic.id = this.topicData.id
+                this.topic.name = this.topicData.name
+                this.topic.description = this.topicData.description
 
+            },
+            saveChanges(){
+                this.editTopicAction(this.topic)
+                this.dialog = false
             }
+        },
+        mounted() {
+            this.editTopicVModel()
         }
     }
 </script>

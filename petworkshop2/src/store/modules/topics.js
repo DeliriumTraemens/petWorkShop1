@@ -116,6 +116,16 @@ export default {
             await context.dispatch('updateTopicList')
         },
 
+        async editTopicAction(context, arg){
+            const fd = new FormData()
+            fd.append('id', arg.id)
+            fd.append('name', arg.name)
+            fd.append('description', arg.description)
+            await axios.post('http://localhost:9090/topic/edit',fd)
+            await context.dispatch('updateTopicList')
+
+        },
+
         incrementSelectedId(context){
             context.commit('selectedTopicIdIncrementMutation')
         },

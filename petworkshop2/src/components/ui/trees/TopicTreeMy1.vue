@@ -14,11 +14,11 @@
                         <v-icon small dark>mdi-minus</v-icon>
                     </v-btn>
 
-                    <TopicEdit1 :topicData="getSelectedTopic"/>
+                    <TopicEdit1 :topicData="items"/>
 
-                    <v-btn icon @click="editTopic">
-                        <v-icon small dark>mdi-pencil</v-icon>
-                    </v-btn>
+<!--                    <v-btn icon @click="editTopic">-->
+<!--                        <v-icon small dark>mdi-pencil</v-icon>-->
+<!--                    </v-btn>-->
                 </v-layout>
 
 

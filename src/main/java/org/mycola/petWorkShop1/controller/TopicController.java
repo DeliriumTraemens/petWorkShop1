@@ -43,4 +43,12 @@ public class TopicController {
 		return topicService.addNewSubTopic(id,name,description);
 	}
 	
+	@PostMapping("/edit")
+	public Topic editTopic(@RequestParam("id")Long id,
+	                       @RequestParam("name")String name,
+	                       @RequestParam("description")String description){
+		return topicService.editTopic(id, name, description);
+		
+	}
+	
 }

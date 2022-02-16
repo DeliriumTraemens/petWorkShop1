@@ -45,4 +45,20 @@ public class TopicService {
 	public Topic getTopicById(Long id) {
 		return topicRepo.findById(id).get();
 	}
+	
+	public Topic editTopic(Long id, String name, String description) {
+		Topic topicFromFront = new Topic();
+		Topic topicFromDb = topicRepo.findById(id).get();
+		
+		if(!name.equals("")){
+			topicFromDb.setName(name);
+		}
+		if(!description.equals("")){
+			topicFromDb.setDescription(description);
+		}
+		
+		System.out.println("\n ------------------TopicFromDb -----------");
+		System.out.println(topicFromDb);
+		return topicRepo.save(topicFromDb);
+	}
 }
