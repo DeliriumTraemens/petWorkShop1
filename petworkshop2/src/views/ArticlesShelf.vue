@@ -6,8 +6,8 @@
                     <h1>Col 1</h1>
                 <TopicTreeExpansion2 :data="getTopicsTotalList"/>
                 </div>
-            </v-col>
-            <v-col>
+            </v-col >
+            <v-col cols="4" >
                 <h1 >Col 2</h1>
 
 
@@ -63,13 +63,12 @@
                 <hr>
 
             </v-col>
-            <v-col>
+            <v-col cols="4">
                 <h1>Col 3</h1>
 
                 <TopicNewRootForm2 />
                 <hr class="mb-5">
                 <!-- Tree Browser -->
-                <!--                <TreeBrowser :node="root" />-->
                 <div>TreeBrowser</div>
                 <hr class="mb-4">
                 <TreeBrowser

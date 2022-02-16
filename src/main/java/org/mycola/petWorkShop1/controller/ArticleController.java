@@ -20,15 +20,26 @@ public class ArticleController {
 	}
 	
 	@GetMapping
-	public List getAllArticles(){
+	public List getAllArticles() {
 		return artService.getAllArticles();
 	}
 	
 	@PostMapping
-	public Article createNewArticle(@RequestParam(name = "id")Long id,
-	                                @RequestParam(name = "name")String name,
-	                                @RequestParam(name = "text")String description){
-		return artService.saveNewArticle(id,name,description);
+	public Article createNewArticle(
+			@RequestParam(name = "id") Long id,
+			@RequestParam(name = "name") String name,
+			@RequestParam(name = "text") String description
+	                               ) {
+		return artService.saveNewArticle(id, name, description);
+	}
+	
+	@PostMapping("/edit")
+	public Article editArticles(
+			@RequestParam(name = "id") Long id,
+			@RequestParam(name = "artTopic") String artTopic,
+			@RequestParam(name = "name") String name,
+			@RequestParam(name = "description") String description) {
+		return artService.editArticle(id, artTopic, name, description);
 	}
 	
 }

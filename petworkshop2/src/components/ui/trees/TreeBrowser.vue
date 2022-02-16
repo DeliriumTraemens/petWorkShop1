@@ -1,15 +1,22 @@
 <template>
-    <div >
+    <v-container >
         <!--Container form node Element-->
         <div class="node"
              :style="{'margin-left': `${depth * 15}px`}"
              @click="nodeClicked(node)">
 <!--            <span v-if="hasChildren" class="type">-->
+               <div>
             <span v-if="node.children.length>0" class="type" style="font-size:10px; color: darkorange">
                 {{ expanded ? '&#9660;' : '&#9658;'}}
             </span>
             <span v-else style="font-size:10px; color: mediumblue"> &#9671; </span>
                 {{node.name}} {{depth}}
+                   <v-btn icon
+                          color="warning"
+                          >
+                   <TopicEdit1 :topicData="node"/>
+                   </v-btn>
+               </div>
         </div>
         <!--Container form recursion Traverse-->
         <div v-if="expanded">
@@ -21,13 +28,15 @@
         </div>
 
 
-    </div>
+    </v-container>
 </template>
 
 <script>
     import {mapActions} from 'vuex';
+    import TopicEdit1 from "../dialogs/TopicEdit1";
     export default {
         name: "TreeBrowser",
+        components: {TopicEdit1},
         props: {
             node: Object,
             depth: {

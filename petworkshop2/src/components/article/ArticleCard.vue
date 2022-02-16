@@ -10,14 +10,17 @@
                 {{article.description}}
             </v-card-text>
             <v-card-actions>
-                <v-btn color="warning" x-small>Edit</v-btn>
+<!--                <v-btn color="warning" x-small>Edit</v-btn>-->
+                <ArticleDialogEdit :data="article"/>
             </v-card-actions>
         </v-card>
 </template>
 
 <script>
+    import ArticleDialogEdit from "../ui/dialogs/ArticleDialogEdit";
     export default {
         name: "ArticleCard",
+        components: {ArticleDialogEdit},
         props: {
             article:[]
         },

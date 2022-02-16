@@ -4,6 +4,9 @@
             <v-card-title >
                 {{name}}
             </v-card-title>
+            <v-card-actions>
+                <ArticleDialogMy1 :parTop="topicID"/>
+            </v-card-actions>
             <hr>
             <v-card-subtitle>
                topicId {{topicID}}
@@ -13,11 +16,6 @@
                 <ArticleCard v-for="(article, i) in articlesList" :key="i" :article="article" />
                 <div v-if="articlesList.length===0">Статей нет</div>
             </v-card-text>
-            <v-card-actions>
-                <!--TODO Article add Dialog to be created-->
-                <ArticleDialogMy1 :parTop="topicID"/>
-<!--                <v-btn x-small color="warning" >Add Article</v-btn>-->
-            </v-card-actions>
         </v-card>
     </v-container>
 </template>

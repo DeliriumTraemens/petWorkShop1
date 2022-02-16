@@ -36,4 +36,18 @@ public class ArticleService {
 		
 		return artRepo.save(newArticle);
 	}
+	
+	public Article editArticle(Long id, String artTopic, String name, String description) {
+		
+		Article fromDb = artRepo.findById(id).get();
+		if (!name.equals("")){
+			fromDb.setName(name);
+		}
+		if(!description.equals("")){
+			fromDb.setDescription(description);
+		}
+		fromDb.setChangeDate(LocalDateTime.now());
+		
+		return artRepo.save(fromDb);
+	}
 }

@@ -61,10 +61,7 @@
         data() {
             return{
                 dialog: false,
-                // name: null,
-                // description: null,
                 topic:{
-                    // id: this.topicData.id,
                     id: String,
                     name: String,
                     description: String
