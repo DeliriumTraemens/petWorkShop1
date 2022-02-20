@@ -22,7 +22,10 @@
 
                         <hr class="mb-3">
                         <v-text-field label="Name" v-model="article.name" ></v-text-field>
-                        <v-textarea label="Description"  v-model="article.description" ></v-textarea>
+                        <v-textarea
+                                auto-grow
+                                label="Description"
+                                v-model="article.description" ></v-textarea>
                     </v-card-text>
 
                     <v-card-actions>
@@ -77,15 +80,17 @@
 
             }
         },
-        mounted(){
+        created(){
             this.setVModelFields()
         },
         methods:{
-            ...mapActions(['updateArticleAction']),
-            saveArticle(){
+            ...mapActions(['updateArticleAction','updateTopicList','setSelectedTopic']),
+          async  saveArticle(){
                 // alert('Submit')
                 this.dialog = false
-                this.updateArticleAction(this.article)
+               await this.updateArticleAction(this.article)
+              this.article.name = ''
+              this.article.description = ''
             },
 
             setVModelFields(){
@@ -95,6 +100,10 @@
                 this.article.description = this.data.description;
             }
         },
+        beforeDestroy(){
+               //todo   update selected topic from server
+               // this.setSelectedTopic(this.article.artTopic)
+        }
     }
 </script>
 

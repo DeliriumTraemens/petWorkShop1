@@ -1,9 +1,9 @@
 <template>
-    <v-container>
-        <TopicTreeMy1 v-for="(item,i) in items" :key="i"
-                      :items="item"
+    <v-container >
 
-        />
+            <TopicTreeMy1 v-for="(item,i) in items" :key="i"
+                          :items="item"/>
+
     </v-container>
 </template>
 
@@ -18,14 +18,14 @@
             items: []
         },
         methods: {
-            sendup(item){
-                // alert('TopicTreeRoot method sendup'+item.name)
-                console.log(item)
-                this.$emit('sendup', item)
-            },
-            async updateTopicList(){
-                this.$emit('updateTopicList')
-            }
+            // sendup(item){
+            //     // alert('TopicTreeRoot method sendup'+item.name)
+            //     console.log(item)
+            //     this.$emit('sendup', item)
+            // },
+            // async updateTopicList(){
+            //     this.$emit('updateTopicList')
+            // }
         }
     }
 </script>

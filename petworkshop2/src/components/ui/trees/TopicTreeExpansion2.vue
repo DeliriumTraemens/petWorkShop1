@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Exp Tree</h2>
+        <h2>TopicExpPan2</h2>
         <TopicExpPan2 v-for="(topic,i) in data" :key="i"
         :data="topic"/>
     </div>

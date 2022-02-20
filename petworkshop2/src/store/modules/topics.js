@@ -52,9 +52,12 @@ export default {
             state.topicsTotalList = argTotalTopics
         },
 
+        //Передаем объект массива
         selectedTopicMutation(state, arg){
             state.selectedTopic = arg
+            // console.log(state.selectedTopic)
         },
+
 
         selectedTopicIdIncrementMutation(state){
             state.selectedTopicId++
@@ -79,15 +82,28 @@ export default {
             // this.loadMainTopicList()
             await axios.get('http://localhost:9090/topic')
                 .then(res => {
-                    const totalTopics = res.data;
-                    console.log(totalTopics)
-                    context.commit('topicTotalListMutation', totalTopics)
+                    // const totalTopics = res.data;
+                    // console.log(totalTopics)
+                    context.commit('topicTotalListMutation', res.data)
                 })
                     // alert('Update TOPIC LIST')
         },
 
         setSelectedTopic(context, arg){
+            //todo  server request перевести на прием только Айда, а не всего объекта
+            // const topicId=String(arg)
+            // const fd= new FormData()
+          // await  axios.get('http://localhost:9090/topic/'+arg).then(res =>{
+          //       console.log('Requested Topic')
+          //       console.log(res.data)
+          //   })
             context.commit('selectedTopicMutation',arg)
+        },
+        //arg -- just tiopic Id
+        refreshSelectedTopicAction(context, arg){
+            const fd=new FormData()
+            fd.append('id',arg)
+
         },
 
         async createNewRootTopic(context, arg){

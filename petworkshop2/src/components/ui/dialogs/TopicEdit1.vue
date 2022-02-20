@@ -1,8 +1,9 @@
 <template>
-    <div>
+    <div class="wrap1">
 
-        <div class="pt-0.5">
+        <div class="pt-0.5 ">
             <v-btn icon
+
                    color="warning"
                    @click.stop="dialog = true">
                 <v-icon small dark>

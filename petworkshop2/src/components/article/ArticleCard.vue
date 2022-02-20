@@ -6,9 +6,9 @@
             <v-card-subtitle>
                 Topic id #{{article.artTopic}}
             </v-card-subtitle>
-            <v-card-text>
-                {{article.description}}
+            <v-card-text v-html="article.description">
             </v-card-text>
+
             <v-card-actions>
 <!--                <v-btn color="warning" x-small>Edit</v-btn>-->
                 <ArticleDialogEdit :data="article"/>

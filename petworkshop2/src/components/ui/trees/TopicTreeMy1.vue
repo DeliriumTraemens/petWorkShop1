@@ -1,7 +1,7 @@
 <template>
-        <div class="mytree1">
-            <v-layout justify-space-between>
-                <div @click="itemClicked(items)" >
+        <div class="mytree1"   >
+            <v-layout justify-space-between @click="itemClicked(items)" >
+                <div >
                     <span v-if="items.children.length>0" style="font-size:10px; color: darkorange">{{ expanded ? '&#9660;' : '&#9658;'}}</span>
                     <span v-else style="font-size:10px; color: mediumblue"> &#9671; </span>
                         {{items.name}}
@@ -47,7 +47,6 @@
             return{
                 isActive:true,
                 expanded: false
-
             }
         },
         computed: {
@@ -55,32 +54,14 @@
         },
         methods: {
             ...mapActions(['setSelectedTopic']),
-            itemClicked(items){
-                this.expanded=!this.expanded
+            itemClicked(items) {
+                this.expanded = !this.expanded
                 this.setSelectedTopic(items)
-                this.$emit("showItem",items)
             },
-            editTopic(){
-
-            },
-            showItem(items){
-                // alert('TopicTreeMy1')
-                // alert(items.name)
-                // this.isActive=false;
-                // this.expanded=!this.expanded
-                this.$emit("showItem",items)
-            },
-            collapse(){
-                this.isActive=false;
-
-            },
-          async  updateTopicList(){
-                this.$emit("updateTopicList")
+            created() {
+                console.log('Tree Items')
+                console.log(this.items)
             }
-        },
-        created () {
-            console.log('Tree Items')
-            console.log(this.items)
         }
     }
 </script>
@@ -91,6 +72,7 @@
     border-top:1px solid;
     height:50%;
     text-vertical-align: center;
+
 }
 
 .isActive{

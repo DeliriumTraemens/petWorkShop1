@@ -23,14 +23,18 @@
     export default {
         name: "TopicExpPan2",
         props: {
-            data: []
+            data: {}
         },
         computed: mapGetters(['getTopicsTotalList','getSelectedTopic' ,'getTopicsSelectedTopicId', 'getTopicsSelectedTopic']),
         methods: {
             ...mapActions(['updateTopicList', 'setSelectedTopic', 'incrementSelectedId', 'setSelectedTopicId']),
             headerClick(data) {
-                console.log(data.name);
-                this.setSelectedTopic(data)
+                console.log('Setselected Topic');
+                const topicId=String(data.id)
+
+                console.log(topicId);
+            // TODO передать id
+            this.setSelectedTopic(data)
             }
         }
     }

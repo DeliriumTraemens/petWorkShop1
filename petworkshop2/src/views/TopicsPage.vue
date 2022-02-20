@@ -1,14 +1,20 @@
 <template>
     <div>
+        <h1>Topics</h1>
         <v-row>
             <v-col cols="4">
-                <h2>Col1 Topics</h2>
+                <h2>Col1 </h2>
 
                 <TopicsExpansion1 :items="getTopicsTotalList"  />
                 <hr>
                 <div>TopicTreeRoot</div>
                 <hr class="mb-3">
-                <TopicTreeRoot :items="getTopicsTotalList"  />
+                <v-card v-scroll="onScroll"
+                        class="overflow-y-auto"
+                        max-height="200">
+
+                </v-card>
+                    <TopicTreeRoot :items="getTopicsTotalList"  />
 
                 <hr>
                 <div class="mt-3">TopicNewRootForm</div>
@@ -34,6 +40,7 @@
             <v-col> <H2>Col 3</H2>
                 <div class="mb-4">Topics 2</div>
                 <hr class="mb-4">
+                <div class="ed1" contenteditable="true"></div>
 
 
             </v-col>
@@ -107,5 +114,10 @@
     margin-top: 20px;
     padding: 20px;
     background-color: darkorange;
+}
+.ed1{
+    min-height: 450px;
+    border: 1px solid;
+    margin-left: 10px;
 }
 </style>

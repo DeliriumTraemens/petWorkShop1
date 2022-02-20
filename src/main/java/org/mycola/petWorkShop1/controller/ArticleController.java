@@ -28,7 +28,7 @@ public class ArticleController {
 	public Article createNewArticle(
 			@RequestParam(name = "id") Long id,
 			@RequestParam(name = "name") String name,
-			@RequestParam(name = "text") String description
+			@RequestParam(name = "description") String description
 	                               ) {
 		return artService.saveNewArticle(id, name, description);
 	}

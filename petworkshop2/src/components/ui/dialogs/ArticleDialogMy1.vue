@@ -20,8 +20,8 @@
                 </v-card-title>
 
                 <v-card-text>
-                    <v-text-field label="Name" v-model="articleName" ></v-text-field>
-                    <v-textarea label="Description"  v-model="articleDescription" ></v-textarea>
+                    <v-text-field label="Name" v-model="article.name" ></v-text-field>
+                    <v-textarea label="Description"  v-model="article.description" ></v-textarea>
 
                 </v-card-text>
 
@@ -50,7 +50,8 @@
 </template>
 
 <script>
-    import axios from 'axios'
+    // import axios from 'axios'
+    import { mapActions } from 'vuex';
     export default {
         name: "ArticleDialogMy1",
         props: {
@@ -62,23 +63,24 @@
                 articleName:'',
                 articleDescription:'',
                 articleUrl: 'http://localhost:9090/article',
-                topicParentId:''
+                topicParentId:'',
+                article:{
+                    name:'',
+                    description:'',
+                    topicId:String,
+                    url: 'http://localhost:9090/article'
+                }
             }
         },
         methods: {
-            createNewArticle(id){
+            ...mapActions(['createArticleAction', 'updateTopicList']),
+            async createNewArticle(id){
                 this.dialog = false
-                console.log(id)
-                const fd = new FormData()
-                fd.append('id', id)
-                fd.append('name', this.articleName)
-                fd.append('text', this.articleDescription)
-                console.log(fd)
-                axios.post(this.articleUrl, fd).then(res =>{
-                    console.log('RESPONSE')
-                    console.log(res)
-                })
 
+                this.article.topicId= String(id)
+                await this.createArticleAction(this.article)
+                this.article.name = ''
+                this.article.description = ''
 
             }
         },

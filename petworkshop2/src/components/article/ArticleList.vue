@@ -2,8 +2,13 @@
     <v-container>
         <v-card>
             <v-card-title >
-                {{name}}
+                ArticleList
             </v-card-title>
+            <v-card-subtitle>
+                <h3>
+                    {{name}}
+                </h3>
+            </v-card-subtitle>
             <v-card-actions>
                 <ArticleDialogMy1 :parTop="topicID"/>
             </v-card-actions>
@@ -13,8 +18,12 @@
             </v-card-subtitle>
             <hr>
             <v-card-text>
-                <ArticleCard v-for="(article, i) in articlesList" :key="i" :article="article" />
                 <div v-if="articlesList.length===0">Статей нет</div>
+                <div v-else>
+                    <ArticleCard v-for="(article, i) in articlesList"
+                                 :key="i"
+                                 :article="article"/>
+                </div>
             </v-card-text>
         </v-card>
     </v-container>
@@ -31,7 +40,9 @@
             topicID:{
                 type:Number
             },
-            articlesList:[]
+            articlesList:{
+                type:Array
+            }
         },
         methods: {
 
