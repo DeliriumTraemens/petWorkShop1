@@ -1,5 +1,5 @@
 <template>
-        <v-card class="mb-2">
+        <v-card class="mb-2" style="background-color: #fcfaf5">
             <v-card-title>
                 {{article.name}}
             </v-card-title>

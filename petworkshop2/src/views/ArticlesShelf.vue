@@ -49,7 +49,8 @@
 
                 <TopicNewRootForm2 />
                 <hr class="mb-5">
-                <Scroller1 />
+                scroller
+<!--                <Scroller1 />-->
                 <hr class="mb-5">
                 <TopicCard2  :data="getSelectedTopic" />
                 <hr class="mb-5">
@@ -60,17 +61,17 @@
 </template>
 
 <script>
-    import {mapGetters, mapActions} from 'vuex'
+    import {mapActions, mapGetters} from 'vuex'
     import TopicTreeExpansion2 from "../components/ui/trees/TopicTreeExpansion2";
     import TopicNewRootForm2 from "../components/topic/TopicNewRootForm2";
     import TreeBrowser from "../components/ui/trees/TreeBrowser";
     import ArticleList from "../components/article/ArticleList";
     import TopicCard2 from "../components/ui/cards/TopicCard2";
-    import Scroller1 from "../components/ui/scroll/Scroller1";
+    // import Scroller1 from "../components/ui/scroll/Scroller1";
 
     export default {
         name: "ArticlesShelf",
-        components: {Scroller1, TopicCard2, ArticleList, TreeBrowser, TopicNewRootForm2, TopicTreeExpansion2},
+        components: {TopicCard2, ArticleList, TreeBrowser, TopicNewRootForm2, TopicTreeExpansion2},
         data() {
             return{
                 value: '',

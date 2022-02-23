@@ -10,7 +10,8 @@
                 </h3>
             </v-card-subtitle>
             <v-card-actions>
-                <ArticleDialogMy1 :parTop="topicID"/>
+<!--                <ArticleDialogMy1 :parTop="topicID"/>-->
+                <ArticleDialogNewArticleEd :parTop="topicID"/>
             </v-card-actions>
             <hr>
             <v-card-subtitle>
@@ -22,7 +23,7 @@
                 <div v-else>
                     <ArticleCard v-for="(article, i) in articlesList"
                                  :key="i"
-                                 :article="article"/>
+                                 :article="article" />
                 </div>
             </v-card-text>
         </v-card>
@@ -30,11 +31,12 @@
 </template>
 
 <script>
-    import ArticleCard from "./ArticleCard";
-    import ArticleDialogMy1 from "../ui/dialogs/ArticleDialogMy1";
+    import
+        ArticleCard from "./ArticleCard";
+    import ArticleDialogNewArticleEd from "../ui/dialogs/ArticleDialogNewArticleEd";
     export default {
         name: "ArticleList",
-        components: {ArticleDialogMy1, ArticleCard},
+        components: {ArticleDialogNewArticleEd, ArticleCard},
         props: {
             name: String,
             topicID:{

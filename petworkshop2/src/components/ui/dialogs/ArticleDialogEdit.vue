@@ -22,17 +22,20 @@
 
                         <hr class="mb-3">
                         <v-text-field label="Name" v-model="article.name" ></v-text-field>
-                        <v-textarea
-                                auto-grow
-                                label="Description"
-                                v-model="article.description" ></v-textarea>
+<!--                        <v-textarea-->
+<!--                                auto-grow-->
+<!--                                label="Description"-->
+<!--                                v-model="article.description" >-->
+<!--                        </v-textarea>-->
+                        <WisiwigEditNewArticle v-model="textdescription" :innerdata="article.description"/> />
+
                     </v-card-text>
 
                     <v-card-actions>
                         <v-spacer></v-spacer>
 
                         <v-btn
-                                color="green darken-1"
+                                color="blue darken-3"
                                 text
                                 @click="dialog = false"
                         >
@@ -40,7 +43,7 @@
                         </v-btn>
 
                         <v-btn
-                                color="green darken-1"
+                                color="warning darken-4"
                                 text
                                 @click="saveArticle"
                         >
@@ -60,16 +63,18 @@
 
 <script>
     import {mapActions} from 'vuex';
+    import WisiwigEditNewArticle from "../editors/WisiwigEditNewArticle";
 
     export default {
         name: "ArticleDialogEdit",
+        components: {WisiwigEditNewArticle},
         props: {
             data:{}
         },
         data() {
             return{
                 dialog: false,
-
+                textdescription:'',
                 article:{
                     id:String,
                     artTopic:String,
@@ -88,6 +93,7 @@
           async  saveArticle(){
                 // alert('Submit')
                 this.dialog = false
+              this.article.description=this.textdescription
                await this.updateArticleAction(this.article)
               this.article.name = ''
               this.article.description = ''
