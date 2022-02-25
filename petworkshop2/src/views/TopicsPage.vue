@@ -21,7 +21,7 @@
                 <TopicNewRootForm/>
                 <div class="cont"></div>
             </v-col>
-            <v-col cols="6">
+            <v-col cols="5">
                 <div>
                     <v-row>
                         <v-col cols="12"><H2>Col 2</H2>
@@ -49,8 +49,11 @@
             </v-col>
             <v-col><H2>Col 3</H2>
                 <div class="mb-4">Topics 2</div>
-                <hr class="mb-4">
-                <div class="ed1" contenteditable="true"></div>
+                <hr class="mb-4 mr-4">
+                <div class="mr-3">
+                    <ScratchEditor />
+                </div>
+
 
 
             </v-col>
@@ -67,9 +70,11 @@
     import ArticleList from "../components/article/ArticleList";
     import TopicNewRootForm from "../components/topic/TopicNewRootForm";
     import TopicCard1 from "../components/ui/cards/TopicCard1";
+    import ScratchEditor from "../components/scratches/ScratchEditor";
     export default {
         name: "TopicsPage",
         components: {
+            ScratchEditor,
             TopicCard1,
             TopicNewRootForm,
             ArticleList,
@@ -124,9 +129,5 @@
         background-color: darkorange;
     }
 
-    .ed1 {
-        min-height: 450px;
-        border: 1px solid;
-        margin-left: 10px;
-    }
+
 </style>

@@ -1,6 +1,5 @@
 <template>
-    <v-container>
-        <v-card>
+        <v-card  class="overflow-y-auto mt-3" id="articleList">
             <v-card-title >
                 ArticleList
             </v-card-title>
@@ -27,7 +26,6 @@
                 </div>
             </v-card-text>
         </v-card>
-    </v-container>
 </template>
 
 <script>
@@ -57,5 +55,7 @@
 </script>
 
 <style scoped>
-
+#articleList{
+    max-height: 500px;
+}
 </style>

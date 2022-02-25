@@ -20,8 +20,9 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn fab @click="showArticles" color="primary" >Articles</v-btn>
-      <v-btn fab @click="showTopics" color="primary">Topics</v-btn>
+      <v-btn fab @click="showArticles" color="primary" class="ml-4">Articles</v-btn>
+      <v-btn fab @click="showTopics" color="primary" class="ml-4">Topics</v-btn>
+      <v-btn fab @click="showTrainings" color="primary" class="ml-4">Trainings</v-btn>
 
 
       <v-spacer></v-spacer>
@@ -56,6 +57,9 @@ export default {
     },
     showArticles(){
       this.$router.push('/')
+    },
+    showTrainings(){
+      this.$router.push('/Trainings')
     }
   },
 };

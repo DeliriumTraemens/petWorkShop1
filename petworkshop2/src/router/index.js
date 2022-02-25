@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 // import MyStart from "../components/MyStart.vue";
 import TopicsPage from "../views/TopicsPage";
 import ArticlesShelf from "../views/ArticlesShelf.vue";
+import Trainings from "../views/Trainings";
 
 Vue.use(VueRouter)
 
@@ -13,7 +14,7 @@ const routes = [
     name: 'Home',
     component: Home
   },
-
+//Не забываем слеш в path!!!!!
   {
     path: '/Articles',
     name: 'Articles',
@@ -23,6 +24,11 @@ const routes = [
     path: '/Topics',
     name: 'Topics',
     component: TopicsPage
+  },
+  {
+    path:'/Trainings',
+    name: 'Trainings',
+    component: Trainings
   },
   {
     path: '/about',
