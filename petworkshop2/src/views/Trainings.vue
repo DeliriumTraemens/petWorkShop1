@@ -1,9 +1,11 @@
 <template>
-    <v-container>
+    <div class="mx-3">
         <div>FFFFF</div>
         <h1>Trainings</h1>
+        <hr class="mt-3 mb-3">
+        <hr class="mt-3 mb-3">
         <DropTrain2 />
-    </v-container>
+    </div>
 </template>
 
 <script>

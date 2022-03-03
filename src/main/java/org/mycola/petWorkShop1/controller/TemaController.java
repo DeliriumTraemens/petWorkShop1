@@ -6,9 +6,11 @@ import org.mycola.petWorkShop1.service.TemaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/tema")
 public class TemaController {
 	private final TemaRepository temaRepo;
@@ -25,10 +27,29 @@ public class TemaController {
 		return temaService.findAllByRoot();
 	}
 	
+	
+//	@PostMapping("/createRoot")
+//	public void createRootTema(){
+//		Tema newRottema = new Tema();
+//		newRottema.setName("Root");
+//		newRottema.setDescription("Root");
+//		newRottema.setRoot(true);
+//		newRottema.setCreationDate(LocalDateTime.now());
+//
+//		temaRepo.save(newRottema);
+//	}
+	
 	@PostMapping
 	public List<Tema> createNewTema(@RequestParam("name")String name,
-	                                @RequestParam("description")String description,
-	                                @RequestParam("root")int root){
-		return temaService.createNewTema(name,description,root);
+	                                @RequestParam("description")String description) {
+		return temaService.createNewTema(name,description);
+	}
+	
+	@PostMapping("/newSubTema")
+	public List<Tema> createNewSubTema(
+			@RequestParam("idParent")Long idParent,
+			@RequestParam("name")String name,
+	        @RequestParam("description")String description){
+		return temaService.createSubTema(idParent, name, description);
 	}
 }

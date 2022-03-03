@@ -1,7 +1,9 @@
 <template>
     <v-row>
         <h2>Drop Train 2 2 aa</h2>
-        <v-col>
+          <v-col>
+
+
             <div v-for="tema in topics" :key="tema.name" class="topicOuter mb-2">
                 <div
                         draggable="true"
@@ -9,7 +11,18 @@
                         @dragenter.prevent
                         @dragstart="startDrag1(tema)"
                         @drop="onDrop1(tema)"
-                > {{tema.name}} </div>
+                > {{tema.name}}
+                    <AddSubTemaDialog :temaData="tema"/>
+
+                    <div  v-if="tema.children">
+                        <div class="topicOuter mb-2" v-for="child in tema.children" :key="child.name">
+                            <div>
+                                {{child.name}}
+                                <AddSubTemaDialog :temaData="child"/>
+                            </div>
+                            </div>
+                    </div>
+                </div>
             </div>
         </v-col>
         <v-col>
@@ -26,67 +39,60 @@
                 </v-card-text>
             </v-card>
         </v-col>
-        <v-col></v-col>
+        <v-col>
+            <TemaForm />
+
+              <hr class="my-4">
+
+            <TemaBrowser2
+                    v-for="nodes in topics" :key="nodes.id"
+                    :nodes="nodes" />
+        </v-col>
         <hr class="mb-3">
 
     </v-row>
 </template>
 
 <script>
+    import axios from 'axios'
     import {mapGetters} from 'vuex'
+    import TemaForm from "../tema/TemaForm";
+    import AddSubTemaDialog from "../ui/dialogs/AddSubTemaDialog";
+    import TemaBrowser2 from "../ui/trees/TemaBrowser2";
 
     export default {
         name: "DropTrain2",
+        components: {TemaBrowser2, AddSubTemaDialog, TemaForm},
         data() {
             return {
                 topics: [],
                 draggedTopic:[],
                 droppedTopic:[],
-                topics2: [
-                    {
-                        id: 1,
-                        name: 'First',
-                        parent:0
-                    },
-                    {
-                        id: 2,
-                        name: 'Second',
-                        parent:0
-                    },
-                    {
-                        id: 3,
-                        name: 'Third',
-                        parent:0
-                    },
-                    {
-                        id: 4,
-                        name: 'First a',
-                        parent:1
-                    },
-                    {
-                        id: 5,
-                        name: 'Second a',
-                        parent:2
-                    },
-                    {
-                        id: 6,
-                        name: 'Third a',
-                        parent:2
-                    },
 
-                ]
             }
         },
         computed:{
             ...mapGetters(['getTopicsTotalList', 'getSelectedTopic']),
         },
         mounted(){
-            this.setTopics();
+            // this.setTopics();
+            this.setTema()
             },
         methods:{
-            setTopics(){
-                return this.topics=this.getTopicsTotalList
+            async setTema(){
+                await axios.get('http://localhost:9090/tema')
+                .then(res=>{
+                    this.topics=res.data
+                    console.log(res.data)
+                    console.log(this.topics)
+                })
             },
+
+            createSubTema(tema){
+                alert('Pressed'+tema.id)
+            },
+
+
             startDrag1(tema){
                 // ev.dataTransfer.dropEffect = 'move'
                 // ev.dataTransfer.effectAllowed ='move'
@@ -108,6 +114,7 @@
 
 <style scoped>
 .topicOuter{
+        margin-left: 10px;
         padding: 5px;
         border: 1px solid sandybrown;
     }

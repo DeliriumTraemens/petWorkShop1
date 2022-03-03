@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface TemaRepository extends JpaRepository<Tema, Long> {
 	List<Tema> findAllByRoot(boolean b);
+	
+	Tema findByRoot(boolean b);
 }

@@ -99,8 +99,6 @@
         // },
         computed: mapGetters(['getTopicsTotalList', 'getSelectedTopic']),
         methods: {
-
-
             updateTopicList() {
                 axios.get(this.topicUrl)
                     .then(res => {

@@ -21,20 +21,36 @@ public class TemaService {
 		return temaRepo.findAllByRoot(true);
 	}
 	
-	public List<Tema> createNewTema(String name, String description, int root) {
+	public List<Tema> createNewTema(String name, String description) {
 		
+		Tema rootTema=temaRepo.findByRoot(true);
 		Tema newTema=new Tema();
 		if(!name.equals("")){
 			newTema.setName(name);
 			newTema.setDescription(description);
 			newTema.setCreationDate(LocalDateTime.now());
+			newTema.setParentTema(rootTema);
 		}
-		if(root==1){
-			newTema.setRoot(true);
-		}
+		
 		
 		temaRepo.save(newTema);
 		return findAllByRoot();
 		
+	}
+	
+	public List<Tema> createSubTema(Long idParent, String name, String description) {
+		Tema parent= temaRepo.findById(idParent).get();
+		Tema newSub= new Tema();
+		if(!name.equals("")){
+			newSub.setName(name);
+			newSub.setDescription(description);
+			newSub.setParentTema(parent);
+			newSub.setCreationDate(LocalDateTime.now());
+			
+			temaRepo.save(newSub);
+		} else {
+			return findAllByRoot();
+		}
+		return findAllByRoot();
 	}
 }
