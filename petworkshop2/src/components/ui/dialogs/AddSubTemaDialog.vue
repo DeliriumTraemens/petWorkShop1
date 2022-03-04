@@ -51,6 +51,7 @@
 </template>
 
 <script>
+    import axios from 'axios'
     export default {
         name: "AddSubTemaDialog",
         props:{
@@ -63,13 +64,21 @@
                     parentId: this.temaData.id,
                     name:'',
                     description:'',
-                    url: 'http://localhost:9090/topic/newsub'
+                    url: 'http://localhost:9090/tema/newSubTema'
                 },
             }
         },
         methods:{
-            createSubTema(){
-
+          async  createSubTema(){
+                const fd = new FormData();
+                fd.append('idParent', this.newSubTema.parentId)
+                fd.append('name', this.newSubTema.name)
+                fd.append('description', this.newSubTema.description)
+               await axios.post(this.newSubTema.url, fd)
+                                        .then(res=>{
+                                            console.log(res.data);
+                                        })
+                this.dialog = false
             }
         },
     }

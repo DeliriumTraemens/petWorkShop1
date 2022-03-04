@@ -53,4 +53,14 @@ public class TemaService {
 		}
 		return findAllByRoot();
 	}
+	
+	public List<Tema> editDragged(Long id, Long parentTema) {
+		Tema forEdit = temaRepo.findById(id).get();
+		Tema newParent = temaRepo.findById(parentTema).get();
+		
+		forEdit.setParentTema(newParent);
+		temaRepo.save(forEdit);
+		
+		return findAllByRoot();
+	}
 }

@@ -6,7 +6,6 @@ import org.mycola.petWorkShop1.service.TemaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -52,4 +51,12 @@ public class TemaController {
 	        @RequestParam("description")String description){
 		return temaService.createSubTema(idParent, name, description);
 	}
+	
+	@PostMapping("/dragedit")
+	public List <Tema> dragedit(@RequestParam ("id") Long id,
+	                            @RequestParam ("parentTema") Long parentTema){
+		return temaService.editDragged(id, parentTema);
+	}
+	
+	
 }

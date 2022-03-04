@@ -4,18 +4,20 @@
           <v-col>
 
 
-            <div v-for="tema in topics" :key="tema.name" class="topicOuter mb-2">
+            <div v-for="tema in getTemaTotal" :key="tema.name" class="topicOuter mb-2">
                 <div
-                        draggable="true"
-                        @dragover.prevent
-                        @dragenter.prevent
-                        @dragstart="startDrag1(tema)"
-                        @drop="onDrop1(tema)"
+
                 > {{tema.name}}
                     <AddSubTemaDialog :temaData="tema"/>
 
                     <div  v-if="tema.children">
-                        <div class="topicOuter mb-2" v-for="child in tema.children" :key="child.name">
+                        <div class="topicOuter mb-2" v-for="child in tema.children" :key="child.id"
+                             draggable="true"
+                             @dragover.prevent
+                             @dragenter.prevent
+                             @dragstart="startDrag2(child)"
+                             @drop="onDrop2(child)"
+                        >
                             <div>
                                 {{child.name}}
                                 <AddSubTemaDialog :temaData="child"/>
@@ -38,6 +40,21 @@
                     {{droppedTopic.name}}
                 </v-card-text>
             </v-card>
+            <hr class="my-5">
+
+            <v-card class="mb-3">
+                <v-card-title> Initial browser topic</v-card-title>
+                <v-card-text>
+                    {{getTemaDragged.name}}
+                </v-card-text>
+            </v-card>
+            <v-card>
+                <v-card-title>Target browser Topic</v-card-title>
+                <v-card-text>
+                    {{getTemaDropped.name}}
+                </v-card-text>
+            </v-card>
+
         </v-col>
         <v-col>
             <TemaForm />
@@ -45,7 +62,7 @@
               <hr class="my-4">
 
             <TemaBrowser2
-                    v-for="nodes in topics" :key="nodes.id"
+                    v-for="nodes in getTemaTotal" :key="nodes.id"
                     :nodes="nodes" />
         </v-col>
         <hr class="mb-3">
@@ -55,12 +72,13 @@
 
 <script>
     import axios from 'axios'
-    import {mapGetters} from 'vuex'
+    import {mapGetters, mapActions} from 'vuex'
     import TemaForm from "../tema/TemaForm";
     import AddSubTemaDialog from "../ui/dialogs/AddSubTemaDialog";
     import TemaBrowser2 from "../ui/trees/TemaBrowser2";
 
     export default {
+
         name: "DropTrain2",
         components: {TemaBrowser2, AddSubTemaDialog, TemaForm},
         data() {
@@ -72,13 +90,15 @@
             }
         },
         computed:{
-            ...mapGetters(['getTopicsTotalList', 'getSelectedTopic']),
+            ...mapGetters(['getTopicsTotalList', 'getSelectedTopic', 'getTemaTotal','getTemaDragged','getTemaDropped']),
         },
-        mounted(){
+      async  mounted(){
             // this.setTopics();
-            this.setTema()
+          await this.$store.dispatch('setTemaTotal')
+
             },
         methods:{
+            ...mapActions(['setTemaTotal']),
             async setTema(){
                 await axios.get('http://localhost:9090/tema')
                 .then(res=>{
@@ -94,19 +114,22 @@
 
 
             startDrag1(tema){
-                // ev.dataTransfer.dropEffect = 'move'
-                // ev.dataTransfer.effectAllowed ='move'
-                // ev.dataTransfer.setData('temaname', tema.name)
-                // ev.dataTransfer.setData('temaid', tema.id)
                 this.draggedTopic = tema
-                // console.log('dragged'+tema.name)
+                console.log('dragged'+tema.name)
             },
+            startDrag2(tema){
+                this.draggedTopic = tema
+                console.log('dragged'+tema.name)
+            },
+
+
             onDrop1(tema){
                 this.droppedTopic=tema
-                // const dropData = ev.dataTransfer.getData('temaname')
-                // console.log('dropped')
-                // console.log('from '+ dropData + ' to ' +tema.name)
-            }
+            },
+            onDrop2(tema){
+                this.droppedTopic=tema
+            },
+
         }
 
     }
