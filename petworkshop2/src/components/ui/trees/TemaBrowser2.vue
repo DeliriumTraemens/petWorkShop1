@@ -62,7 +62,7 @@
         },
 
         methods: {
-            ...mapActions(['setTemaDragged', 'setTemaDropped']),
+            ...mapActions(['setTemaDragged', 'setTemaDropped','updateDraggedTema']),
 
             nodeClicked(node){
                 this.expanded = !this.expanded
@@ -73,8 +73,10 @@
                 await this.$store.dispatch('setTemaDragged',nodes)
             },
 
-            async onDrop2(nodes){
-                await this.$store.dispatch('setTemaDropped', nodes)
+            async onDrop2(node){
+                // await this.$store.dispatch('setTemaDropped', node)
+                this.setTemaDropped(node)
+                // await this.$store.dispatch('updateDraggedTema')
             }
         },
     }

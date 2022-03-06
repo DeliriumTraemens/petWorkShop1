@@ -47,30 +47,25 @@ export default {
             context.commit('temaDraggedMutation', arg)
         },
 
-       async setTemaDropped(context, arg){
-            await context.commit('temaDroppedMutation', arg).then(
-                this.updateDraggedTema(context)
-            )
-
-        },
-
-        async updateDraggedTema(context){
-            const temaForEdit = this.state.temaDragged.id
-            const newParentTema = this.state.temaDropped.id
-            console.log(temaForEdit +' '+newParentTema)
+        async setTemaDropped(context, arg){
+            await context.commit('temaDroppedMutation', arg)
+                const temaForEdit = context.state.temaDragged.id;
+                const temaNewParent = context.state.temaDropped.id;
 
             const fd = new FormData()
             fd.append('id',temaForEdit)
-            fd.append('parentTema', newParentTema)
+            fd.append('parentTema', temaNewParent)
 
             await axios.post('http://localhost:9090/tema/dragedit', fd)
                 .then(res=>{
                     context.commit('temaTotalMutation', res.data)
-                    console.log(state.temaTotal)
                 })
-            alert('StoreDropped')
 
-        }
+
+                console.log(context.state.temaTotal)
+
+        },
+
     },
 
 }

@@ -31,6 +31,8 @@ public class Tema {
 	private String description;
 	private boolean root=false;
 	
+	private Type type = Type.TEMA;
+	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime creationDate;
 	
@@ -40,4 +42,7 @@ public class Tema {
 	
 	@OneToMany(mappedBy="parentTema")
 	private Set<Tema> children = new HashSet<>();
+	
+	@OneToMany(mappedBy="tema")
+	private Set<Item>items = new HashSet<>();
 }

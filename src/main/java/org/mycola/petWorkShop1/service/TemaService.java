@@ -61,6 +61,9 @@ public class TemaService {
 		forEdit.setParentTema(newParent);
 		temaRepo.save(forEdit);
 		
+		System.out.println("\n-----------------ForEdit---------");
+		System.out.println(forEdit);
+		
 		return findAllByRoot();
 	}
 }

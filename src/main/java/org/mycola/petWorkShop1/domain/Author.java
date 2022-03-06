@@ -19,6 +19,7 @@ public class Author {
 	private String surname;
 	private String email;
 	private String userpic;
+	private Type type = Type.AUTHOR;
 	
 	@OneToMany(mappedBy="author")
 	private Set<Article>articleSet = new HashSet<>();

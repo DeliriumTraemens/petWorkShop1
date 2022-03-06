@@ -14,6 +14,7 @@ public class Comment {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String text;
+	private Type type = Type.COMMENT;
 	
 	@JsonIgnore
 	@ManyToOne

@@ -2,7 +2,10 @@
     <v-row>
         <h2>Drop Train 2 2 aa</h2>
           <v-col>
-
+              <TemaBrowser2
+                      v-for="nodes in getTemaTotal" :key="nodes.id"
+                      :nodes="nodes" />
+              <hr class="my-4">
 
             <div v-for="tema in getTemaTotal" :key="tema.name" class="topicOuter mb-2">
                 <div
@@ -61,9 +64,7 @@
 
               <hr class="my-4">
 
-            <TemaBrowser2
-                    v-for="nodes in getTemaTotal" :key="nodes.id"
-                    :nodes="nodes" />
+
         </v-col>
         <hr class="mb-3">
 

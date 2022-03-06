@@ -52,6 +52,7 @@
 
 <script>
     import axios from 'axios'
+    import {mapActions} from 'vuex';
     export default {
         name: "AddSubTemaDialog",
         props:{
@@ -69,6 +70,7 @@
             }
         },
         methods:{
+            ...mapActions(['setTemaTotal']),
           async  createSubTema(){
                 const fd = new FormData();
                 fd.append('idParent', this.newSubTema.parentId)
@@ -79,6 +81,7 @@
                                             console.log(res.data);
                                         })
                 this.dialog = false
+              await this.$store.dispatch('setTemaTotal')
             }
         },
     }
