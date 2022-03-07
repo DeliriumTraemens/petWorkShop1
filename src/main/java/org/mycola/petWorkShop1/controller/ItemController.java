@@ -25,6 +25,11 @@ public class ItemController {
 		return itemService.getItemByTema(id);
 	}
 	
+	@GetMapping("/itemId")
+	public Item getItemById(@RequestParam("id") Long id){
+		return itemService.getItemById(id);
+	}
+	
 	@PostMapping("/addNewitem")
 	public List<Tema> addNewitem(@RequestParam("tema")Long id,
 	                             @RequestParam("name") String name,

@@ -33,9 +33,17 @@ public class ItemService {
 		newItem.setTema(tema);
 		
 //		TODO Picture File Processing here
+//		String temaName = ПОлучить имя текущей Темы в Стриннг0
+//		Добавить его к общему пути  -- String resultPath = uploadPath+temaName
+//      File pathMaker = new File(resultPath);
+		
 		
 		
 		
 		return temaRepo.findAllByRoot(true);
+	}
+	
+	public Item getItemById(Long id) {
+		return itemRepo.findById(id).get();
 	}
 }

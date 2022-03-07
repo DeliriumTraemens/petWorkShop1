@@ -4,7 +4,8 @@ export default {
     state:{
         temaTotal:[],
         temaDragged:{},
-        temaDropped:{}
+        temaDropped:{},
+        selectedTema:{}
     },
     getters:{
         getTemaTotal(state){
@@ -17,6 +18,10 @@ export default {
 
         getTemaDropped(state){
             return state.temaDropped
+        },
+
+        getSelectedTema(state){
+            return state.selectedTema
         }
     },
     mutations:{
@@ -30,6 +35,10 @@ export default {
 
         temaDroppedMutation(state, arg){
             state.temaDropped = arg
+        },
+
+        selectedTemaMutation(state,arg){
+            this.state.selectedTema=arg
         }
 
 
@@ -41,6 +50,11 @@ export default {
                     context.commit('temaTotalMutation', res.data)
                 })
 
+        },
+
+        setSelectedTema(context,arg){
+            //Code here
+            context.commit('selectedTemaMutation', arg)
         },
 
         setTemaDragged(context, arg){
