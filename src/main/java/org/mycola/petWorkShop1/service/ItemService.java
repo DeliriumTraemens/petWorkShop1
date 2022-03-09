@@ -1,5 +1,6 @@
 package org.mycola.petWorkShop1.service;
 
+import com.ibm.icu.text.Transliterator;
 import org.mycola.petWorkShop1.domain.Item;
 import org.mycola.petWorkShop1.domain.Tema;
 import org.mycola.petWorkShop1.repository.ItemRepository;
@@ -16,6 +17,10 @@ import java.util.List;
 
 @Service
 public class ItemService {
+	
+	public static final String CYRILLIC_TO_LATIN = "Cyrillic-Latin";
+	Transliterator toLatinTrans = Transliterator.getInstance(CYRILLIC_TO_LATIN);
+	
 	
 	@Value("${upload.path}")
 	private String uploadPath;
@@ -47,11 +52,15 @@ public class ItemService {
 //      File pathMaker = new File(resultPath);
 		if(file != null && !file.getOriginalFilename().isEmpty()) {
 //          First
-			String temaName = tema.getName();
+			String temaName = toLatinTrans.transliterate(tema.getName()) ;
 //			/D:/docs/pics/petworkshop1/pictures/ First
 			String resultPathMaker = uploadPath + "/" + temaName;
 //			First / bukhlo.jpg
 			String resultFileName = temaName +"/"+ file.getOriginalFilename();
+
+			//			Cyrillic Test
+			
+			
 			
 			File pathMaker = new File(resultPathMaker);
 			if(!pathMaker.exists()) {
@@ -64,7 +73,6 @@ public class ItemService {
 		}
 		
 		itemRepo.save(newItem);
-		
 		
 		return temaRepo.findAllByRoot(true);
 	}
