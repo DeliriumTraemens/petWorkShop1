@@ -1,3 +1,4 @@
+import axios from 'axios'
 export default {
     state: {
         item: {},
@@ -33,5 +34,26 @@ export default {
             state.temaItems=arg
         }
     },
-    actions: {}
+    actions: {
+        setSelectedItem(context, arg){
+            context.commit('selectedItemMutation', arg)
+        },
+
+      async  createNewItem(context, arg){
+            const selectedTema= String(context.rootGetters.getSelectedTema.id)
+            console.log(typeof(arg.selectedFile))
+            console.log(arg)
+            const fd = new FormData()
+                fd.append('tema', selectedTema)
+                fd.append('name', arg.name)
+                fd.append('description', arg.description)
+                fd.append('file', arg.selectedFile)
+
+               await axios.post('http://localhost:9090/item/addNewItem', fd).then(res =>{
+                    context.commit('temaTotalMutation', res.data)
+
+                })
+            console.log(context.getters.getTemaTotal)
+        }
+    }
 }

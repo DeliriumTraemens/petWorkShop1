@@ -62,11 +62,12 @@
         },
 
         methods: {
-            ...mapActions(['setTemaDragged', 'setTemaDropped','updateDraggedTema']),
+            ...mapActions(['setTemaDragged', 'setTemaDropped','updateDraggedTema', 'setSelectedTema']),
 
-            nodeClicked(node){
+            async nodeClicked(node){
                 this.expanded = !this.expanded
                console.log(node)
+                await this.$store.dispatch('setSelectedTema', node)
             },
 
             async startDrag2(nodes){

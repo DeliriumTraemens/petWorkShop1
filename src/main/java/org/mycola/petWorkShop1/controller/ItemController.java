@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -30,11 +31,11 @@ public class ItemController {
 		return itemService.getItemById(id);
 	}
 	
-	@PostMapping("/addNewitem")
-	public List<Tema> addNewitem(@RequestParam("tema")Long id,
+	@PostMapping("/addNewItem")
+	public List<Tema> addNewItem(@RequestParam("tema")Long id,
 	                             @RequestParam("name") String name,
 	                             @RequestParam("description") String description,
-	                             @RequestParam("file")MultipartFile file){
+	                             @RequestParam("file")MultipartFile file) throws IOException {
 		return itemService.addNewItem(id, name, description, file);
 	}
 	

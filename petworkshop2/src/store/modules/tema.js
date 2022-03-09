@@ -38,7 +38,7 @@ export default {
         },
 
         selectedTemaMutation(state,arg){
-            this.state.selectedTema=arg
+            state.selectedTema=arg
         }
 
 

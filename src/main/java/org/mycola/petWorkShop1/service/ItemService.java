@@ -5,13 +5,21 @@ import org.mycola.petWorkShop1.domain.Tema;
 import org.mycola.petWorkShop1.repository.ItemRepository;
 import org.mycola.petWorkShop1.repository.TemaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 public class ItemService {
+	
+	@Value("${upload.path}")
+	private String uploadPath;
+	
 	
 	private final ItemRepository itemRepo;
 	private final TemaRepository temaRepo;
@@ -25,19 +33,37 @@ public class ItemService {
 		return itemRepo.getItemByTema(id);
 	}
 	
-	public List<Tema> addNewItem(Long id, String name, String description, MultipartFile file) {
+	public List<Tema> addNewItem(Long id, String name, String description, MultipartFile file) throws IOException {
 		Item newItem = new Item();
 		Tema tema = temaRepo.findById(id).get();
 		newItem.setName(name);
 		newItem.setDescription(description);
 		newItem.setTema(tema);
+		newItem.setCreationDate(LocalDateTime.now());
 		
 //		TODO Picture File Processing here
 //		String temaName = ПОлучить имя текущей Темы в Стриннг0
 //		Добавить его к общему пути  -- String resultPath = uploadPath+temaName
 //      File pathMaker = new File(resultPath);
+		if(file != null && !file.getOriginalFilename().isEmpty()) {
+//          First
+			String temaName = tema.getName();
+//			/D:/docs/pics/petworkshop1/pictures/ First
+			String resultPathMaker = uploadPath + "/" + temaName;
+//			First / bukhlo.jpg
+			String resultFileName = temaName +"/"+ file.getOriginalFilename();
+			
+			File pathMaker = new File(resultPathMaker);
+			if(!pathMaker.exists()) {
+				pathMaker.mkdir();
+			}
+			
+			newItem.setImage(resultFileName);
+			file.transferTo(new File(uploadPath + "/" + resultFileName));
+			
+		}
 		
-		
+		itemRepo.save(newItem);
 		
 		
 		return temaRepo.findAllByRoot(true);
