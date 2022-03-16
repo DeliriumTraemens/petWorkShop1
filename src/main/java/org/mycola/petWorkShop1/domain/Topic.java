@@ -48,6 +48,7 @@ public class Topic {
 	private Set<Topic>children = new HashSet<>();
 	
 	@OneToMany(mappedBy="artTopic")
+	@OrderBy("id DESC ")
 	private Set <Article> articleSet=new HashSet<>();
 	
 	

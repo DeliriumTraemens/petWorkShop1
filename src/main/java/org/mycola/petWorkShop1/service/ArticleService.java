@@ -5,6 +5,7 @@ import org.mycola.petWorkShop1.domain.Topic;
 import org.mycola.petWorkShop1.repository.ArticleRepository;
 import org.mycola.petWorkShop1.repository.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -23,7 +24,7 @@ public class ArticleService {
 	}
 	
 	public List getAllArticles() {
-		return artRepo.findAll();
+		return artRepo.findAll(Sort.by(Sort.Direction.DESC,"id"));
 	}
 	
 	public Article saveNewArticle(Long id, String name, String description) {

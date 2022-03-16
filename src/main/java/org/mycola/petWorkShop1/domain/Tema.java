@@ -44,5 +44,6 @@ public class Tema {
 	private Set<Tema> children = new HashSet<>();
 	
 	@OneToMany(mappedBy="tema")
+	@OrderBy("id DESC ")
 	private Set<Item>items = new HashSet<>();
 }

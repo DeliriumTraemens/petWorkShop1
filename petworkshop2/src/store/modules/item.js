@@ -53,7 +53,16 @@ export default {
                     context.commit('temaTotalMutation', res.data)
 
                 })
-            console.log(context.getters.getTemaTotal)
+
+                // const sd = new FormData()
+                // sd.append('id', selectedTema)
+                const temaNum = String(context.rootGetters.getSelectedTema.id)
+                await axios.get('http://localhost:9090/tema/'+temaNum).then(res =>{
+                    context.commit('selectedTemaMutation', res.data)
+                    console.log('SelectedTema')
+                    console.log(context.rootGetters.getSelectedTema)
+                })
+            // console.log(context.getters.getTemaTotal)
         }
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -53,10 +54,15 @@ public class ItemService {
 		if(file != null && !file.getOriginalFilename().isEmpty()) {
 //          First
 			String temaName = toLatinTrans.transliterate(tema.getName()) ;
+			String temaNameReplaced = temaName.replace(' ','-');
+//			String softSignReplaced = temaNameReplaced.replace('ʹ', 'j');
+			String softSignReplaced = URLEncoder.encode(temaNameReplaced, "UTF-8");
+//			URLEncoder.encode(s, "UTF-8")
+
 //			/D:/docs/pics/petworkshop1/pictures/ First
-			String resultPathMaker = uploadPath + "/" + temaName;
+			String resultPathMaker = uploadPath + "/" + softSignReplaced;
 //			First / bukhlo.jpg
-			String resultFileName = temaName +"/"+ file.getOriginalFilename();
+			String resultFileName = softSignReplaced +"/"+ file.getOriginalFilename();
 
 			//			Cyrillic Test
 			

@@ -1,6 +1,7 @@
 package org.mycola.petWorkShop1.repository;
 
 import org.mycola.petWorkShop1.domain.Tema;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

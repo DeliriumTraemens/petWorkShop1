@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TemaService {
@@ -17,9 +18,11 @@ public class TemaService {
 		this.temaRepo = temaRepo;
 	}
 	
+	
 	public List <Tema> findAllByRoot() {
 		return temaRepo.findAllByRoot(true);
 	}
+	
 	
 	public List<Tema> createNewTema(String name, String description) {
 		
@@ -65,5 +68,9 @@ public class TemaService {
 		System.out.println(forEdit);
 		
 		return findAllByRoot();
+	}
+	
+	public Optional<Tema> getTemaById(Long id) {
+		return  temaRepo.findById(id);
 	}
 }

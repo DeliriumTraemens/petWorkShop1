@@ -34,6 +34,10 @@
 
                 this.$store.dispatch('createNewItem', this.item)
 
+                this.item.temaId =''
+                this.item.name =''
+                this.item.description =''
+                this.item.selectedFile = null
             }
 
 
