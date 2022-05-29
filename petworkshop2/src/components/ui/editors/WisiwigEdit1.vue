@@ -1,44 +1,93 @@
 <template>
-
-    <div>
-
-
-        <div class="button-wrap">
-            <v-btn small @click="applyBold">
-                <v-icon small dark>mdi-format-bold</v-icon>
-            </v-btn>
-            <v-btn small @click="applyItalic">
-                <v-icon small dark>mdi-format-italic</v-icon>
-            </v-btn>
-            <v-btn  small @click="applyHeading">
-                <v-icon small dark>mdi-format-header-1</v-icon>
-            </v-btn>
-            <v-btn small @click="applyUl">
-                <v-icon small dark>mdi-format-list-bulleted</v-icon>
-            </v-btn>
-            <v-btn small @click="applyOl">
-                <v-icon small dark>mdi-format-list-numbered</v-icon>
-            </v-btn>
-            <v-btn small @click="undo">
-                <v-icon small dark>mdi-arrow-u-left-bottom</v-icon>
-            </v-btn>
-            <v-btn small @click="redo">
-                <v-icon small dark>mdi-arrow-u-right-top</v-icon>
-            </v-btn>
-        </div>
-
-        <div
-                @input="onInput"
-                v-html="innerdata"
-                contenteditable="true"
-                class="wysiwyg-output outline-none border-3 p-6 rounded-lg border-gray-300 focus:border-green-300"
-                id="wised1" >
-
-        </div>
-
+  <div>
+    <div class="button-wrap">
+      <v-btn
+        small
+        @click="applyBold"
+      >
+        <v-icon
+          small
+          dark
+        >
+          mdi-format-bold
+        </v-icon>
+      </v-btn>
+      <v-btn
+        small
+        @click="applyItalic"
+      >
+        <v-icon
+          small
+          dark
+        >
+          mdi-format-italic
+        </v-icon>
+      </v-btn>
+      <v-btn
+        small
+        @click="applyHeading"
+      >
+        <v-icon
+          small
+          dark
+        >
+          mdi-format-header-1
+        </v-icon>
+      </v-btn>
+      <v-btn
+        small
+        @click="applyUl"
+      >
+        <v-icon
+          small
+          dark
+        >
+          mdi-format-list-bulleted
+        </v-icon>
+      </v-btn>
+      <v-btn
+        small
+        @click="applyOl"
+      >
+        <v-icon
+          small
+          dark
+        >
+          mdi-format-list-numbered
+        </v-icon>
+      </v-btn>
+      <v-btn
+        small
+        @click="undo"
+      >
+        <v-icon
+          small
+          dark
+        >
+          mdi-arrow-u-left-bottom
+        </v-icon>
+      </v-btn>
+      <v-btn
+        small
+        @click="redo"
+      >
+        <v-icon
+          small
+          dark
+        >
+          mdi-arrow-u-right-top
+        </v-icon>
+      </v-btn>
     </div>
 
-
+    <div
+      id="wised1"
+      contenteditable="true"
+      class="wysiwyg-output outline-none border-3 p-6 rounded-lg border-gray-300 focus:border-green-300"
+      @input="onInput"
+      v-html="innerdata"
+    />
+  </div>
 </template>
 
 <script>

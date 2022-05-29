@@ -1,64 +1,68 @@
 <template>
-    <div>
-        <h1>Topics</h1>
-        <v-row>
-            <v-col cols="4">
-                <h2>Col1 </h2>
+  <div>
+    <h1>Topics</h1>
+    <v-row>
+      <v-col cols="4">
+        <h2>Col1 </h2>
 
-                <TopicsExpansion1 :items="getTopicsTotalList"/>
-                <hr>
-                <div>TopicTreeRoot</div>
-                <hr class="mb-3">
-                <v-card
-                        class="overflow-y-auto"
-                        max-height="200">
+        <TopicsExpansion1 :items="getTopicsTotalList" />
+        <hr>
+        <div>TopicTreeRoot</div>
+        <hr class="mb-3">
+        <v-card
+          class="overflow-y-auto"
+          max-height="200"
+        >
+          <TopicTreeRoot :items="getTopicsTotalList" />
+        </v-card>
 
-                    <TopicTreeRoot :items="getTopicsTotalList"/>
-                </v-card>
+        <hr>
+        <div class="mt-3">
+          TopicNewRootForm
+        </div>
+        <TopicNewRootForm />
+        <div class="cont" />
+      </v-col>
+      <v-col cols="5">
+        <div>
+          <v-row>
+            <v-col cols="12">
+              <H2>Col 2</H2>
+              <hr>
+              <hr class="mb-3">
+              <!--                            <div>-->
 
-                <hr>
-                <div class="mt-3">TopicNewRootForm</div>
-                <TopicNewRootForm/>
-                <div class="cont"></div>
+              <!--                                <WisiwigEdit1 :innerdata="getSelectedTopic.name"/>-->
+              <!--                                <hr>-->
+              <!--                                <WisiwigEdit1Template/>-->
+              <!--                                <hr>-->
+              <!--                                <HtmlEditorWrap1 :data="getSelectedTopic.articleSet"/>-->
+              <!--                            </div>-->
+              <hr class="mb-3">
+              <!--                        <TopicCard1 :data="currentTopic"/>-->
+              <TopicCard1 :data="getSelectedTopic" />
+              <!--ArticlesList-->
+              <ArticleList
+                :name="getSelectedTopic.name"
+                :topic-i-d="getSelectedTopic.id"
+                :articles-list="getSelectedTopic.articleSet"
+              />
             </v-col>
-            <v-col cols="5">
-                <div>
-                    <v-row>
-                        <v-col cols="12"><H2>Col 2</H2>
-                            <hr>
-                            <hr class="mb-3">
-<!--                            <div>-->
-
-<!--                                <WisiwigEdit1 :innerdata="getSelectedTopic.name"/>-->
-<!--                                <hr>-->
-<!--                                <WisiwigEdit1Template/>-->
-<!--                                <hr>-->
-<!--                                <HtmlEditorWrap1 :data="getSelectedTopic.articleSet"/>-->
-<!--                            </div>-->
-                            <hr class="mb-3">
-                            <!--                        <TopicCard1 :data="currentTopic"/>-->
-                            <TopicCard1 :data="getSelectedTopic"/>
-                            <!--ArticlesList-->
-                            <ArticleList
-                                    :name="getSelectedTopic.name"
-                                    :topicID="getSelectedTopic.id"
-                                    :articlesList="getSelectedTopic.articleSet"/>
-                        </v-col>
-                    </v-row>
-                </div>
-            </v-col>
-            <v-col><H2>Col 3</H2>
-                <div class="mb-4">Topics 2</div>
-                <hr class="mb-4 mr-4">
-                <div class="mr-3">
-                    <ScratchEditor />
-                </div>
-
-
-
-            </v-col>
-        </v-row>
-    </div>
+          </v-row>
+        </div>
+      </v-col>
+      <v-col>
+        <H2>Col 3</H2>
+        <div class="mb-4">
+          Topics 2
+        </div>
+        <hr class="mb-4 mr-4">
+        <div class="mr-3">
+          <ScratchEditor />
+        </div>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
@@ -98,6 +102,10 @@
         //     }
         // },
         computed: mapGetters(['getTopicsTotalList', 'getSelectedTopic']),
+        async mounted() {
+
+            await this.$store.dispatch('updateTopicList')
+        },
         methods: {
             updateTopicList() {
                 axios.get(this.topicUrl)
@@ -108,10 +116,6 @@
                     })
             }
 
-        },
-        async mounted() {
-
-            await this.$store.dispatch('updateTopicList')
         }
     }
 </script>

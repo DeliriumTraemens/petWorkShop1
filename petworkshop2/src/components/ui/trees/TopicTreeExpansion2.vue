@@ -1,9 +1,12 @@
 <template>
-    <div>
-        <h2>TopicExpPan2</h2>
-        <TopicExpPan2 v-for="(topic,i) in data" :key="i"
-        :data="topic"/>
-    </div>
+  <div>
+    <h2>TopicExpPan2</h2>
+    <TopicExpPan2
+      v-for="(topic,i) in data"
+      :key="i"
+      :data="topic"
+    />
+  </div>
 </template>
 <!--На предыдущем компоненте передаем в пропсы массив
 2) В Текущем компоненте вызываем Компонент Списка и сразу задаем итерацию

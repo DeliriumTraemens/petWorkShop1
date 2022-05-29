@@ -1,7 +1,10 @@
 <template>
-    <div class="ed1 mr-3" contenteditable="true" @input="onInput" v-html="scratchText">
-
-    </div>
+  <div
+    class="ed1 mr-3"
+    contenteditable="true"
+    @input="onInput"
+    v-html="scratchText"
+  />
 </template>
 
 <script>

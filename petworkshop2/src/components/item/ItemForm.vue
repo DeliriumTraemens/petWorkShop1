@@ -1,12 +1,23 @@
 <template>
-    <div class="itemForm1">
-        <h1>ItemForm</h1>
-        <h3>{{getSelectedTema.name}}</h3>
-        <v-text-field label="Input Name" v-model="item.name" />
-        <v-textarea label="Input Description" v-model="item.description" />
-        <v-file-input label="Input picture" v-model="item.selectedFile" />
-        <v-btn @click="submitNewItem" >Submit</v-btn>
-    </div>
+  <div class="itemForm1">
+    <h1>ItemForm</h1>
+    <h3>{{ getSelectedTema.name }}</h3>
+    <v-text-field
+      v-model="item.name"
+      label="Input Name"
+    />
+    <v-textarea
+      v-model="item.description"
+      label="Input Description"
+    />
+    <v-file-input
+      v-model="item.selectedFile"
+      label="Input picture"
+    />
+    <v-btn @click="submitNewItem">
+      Submit
+    </v-btn>
+  </div>
 </template>
 
 <script>

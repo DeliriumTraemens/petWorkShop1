@@ -1,38 +1,56 @@
 <template>
-    <div class="node" >
-        <!--Container form node Element-->
-        <v-layout class="lay1" justify-space-between @click="nodeClicked(node)">
-            <div  >
-                <!--            <span v-if="hasChildren" class="type">-->
+  <div class="node">
+    <!--Container form node Element-->
+    <v-layout
+      class="lay1"
+      justify-space-between
+      @click="nodeClicked(node)"
+    >
+      <div>
+        <!--            <span v-if="hasChildren" class="type">-->
 
-                    <span v-if="node.children.length>0" class="type" style="font-size:10px; color: darkorange">
-                            {{ expanded ? '&#9660;' : '&#9658;'}}
-                    </span>
-                    <span v-else style="font-size:10px; color: mediumblue"> &#9671; </span>
-                    {{node.name}} {{depth}}
-            </div>
-            <v-layout align-start justify-end>
-                <TopicDialogMy1 :topicData="node"/>
-                <TopicEdit1 :topicData="node"/>
-                <v-btn icon>
-                    <v-icon small dark>mdi-minus</v-icon>
-                </v-btn>
-
-            </v-layout>
-
-
-        </v-layout>
-        <!--Container form recursion Traverse-->
-        <div v-if="expanded" class="ml-3">
-            <TreeBrowser
-                    v-for="(child, i) in node.children" :key="i"
-                    :node="child"
-                    :depth="depth + 1"
-            />
-        </div>
-
-
+        <span
+          v-if="node.children.length>0"
+          class="type"
+          style="font-size:10px; color: darkorange"
+        >
+          {{ expanded ? '&#9660;' : '&#9658;' }}
+        </span>
+        <span
+          v-else
+          style="font-size:10px; color: mediumblue"
+        > &#9671; </span>
+        {{ node.name }} {{ depth }}
+      </div>
+      <v-layout
+        align-start
+        justify-end
+      >
+        <TopicDialogMy1 :topic-data="node" />
+        <TopicEdit1 :topic-data="node" />
+        <v-btn icon>
+          <v-icon
+            small
+            dark
+          >
+            mdi-minus
+          </v-icon>
+        </v-btn>
+      </v-layout>
+    </v-layout>
+    <!--Container form recursion Traverse-->
+    <div
+      v-if="expanded"
+      class="ml-3"
+    >
+      <TreeBrowser
+        v-for="(child, i) in node.children"
+        :key="i"
+        :node="child"
+        :depth="depth + 1"
+      />
     </div>
+  </div>
 </template>
 
 <script>

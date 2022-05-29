@@ -1,9 +1,9 @@
 <template>
-    <v-card v-scroll="onScroll"
-            class="overflow-y-auto"
-            max-height="200">
-
-    </v-card>
+  <v-card
+    v-scroll="onScroll"
+    class="overflow-y-auto"
+    max-height="200"
+  />
 </template>
 
 <script>

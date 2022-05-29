@@ -1,10 +1,13 @@
 <template>
-    <div>
-        <p>EditorWrap</p>
-        <WisiwigEdit1Template v-model="sometext" :innerdata="texeedit"/>
-        <hr>
-        <div>{{sometext}}</div>
-    </div>
+  <div>
+    <p>EditorWrap</p>
+    <WisiwigEdit1Template
+      v-model="sometext"
+      :innerdata="texeedit"
+    />
+    <hr>
+    <div>{{ sometext }}</div>
+  </div>
 </template>
 
 <script>

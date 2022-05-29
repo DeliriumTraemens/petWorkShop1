@@ -1,10 +1,11 @@
 <template>
-    <div class="mb-4">
-        <h1>TemaTreeRoot</h1>
+  <div class="mb-4">
+    <h1>TemaTreeRoot</h1>
 
-            <TemaBrowser
-                    :nodea="node" />
-    </div>
+    <TemaBrowser
+      :nodea="node"
+    />
+  </div>
 </template>
 
 <script>

@@ -1,10 +1,11 @@
 <template>
-    <v-container >
-
-            <TopicTreeMy1 v-for="(item,i) in items" :key="i"
-                          :items="item"/>
-
-    </v-container>
+  <v-container>
+    <TopicTreeMy1
+      v-for="(item,i) in items"
+      :key="i"
+      :items="item"
+    />
+  </v-container>
 </template>
 
 <script>

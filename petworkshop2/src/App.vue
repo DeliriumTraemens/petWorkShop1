@@ -18,14 +18,35 @@
         <v-app-bar-title>PetWorkShop</v-app-bar-title>
       </div>
 
-      <v-spacer></v-spacer>
+      <v-spacer />
 
-      <v-btn fab @click="showArticles" color="primary" class="ml-4">Articles</v-btn>
-      <v-btn fab @click="showTopics" color="primary" class="ml-4">Topics</v-btn>
-      <v-btn fab @click="showTrainings" color="primary" class="ml-4">Trainings</v-btn>
+      <v-btn
+        fab
+        color="primary"
+        class="ml-4"
+        @click="showArticles"
+      >
+        Articles
+      </v-btn>
+      <v-btn
+        fab
+        color="primary"
+        class="ml-4"
+        @click="showTopics"
+      >
+        Topics
+      </v-btn>
+      <v-btn
+        fab
+        color="primary"
+        class="ml-4"
+        @click="showTrainings"
+      >
+        Trainings
+      </v-btn>
 
 
-      <v-spacer></v-spacer>
+      <v-spacer />
 
       <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
@@ -38,7 +59,7 @@
     </v-app-bar>
 
     <v-main>
-      <router-view/>
+      <router-view />
     </v-main>
   </v-app>
 </template>

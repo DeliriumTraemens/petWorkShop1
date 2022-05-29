@@ -1,31 +1,38 @@
 <template>
-        <v-card  class="overflow-y-auto mt-3" id="articleList">
-            <v-card-title >
-                ArticleList
-            </v-card-title>
-            <v-card-subtitle>
-                <h3>
-                    {{name}}
-                </h3>
-            </v-card-subtitle>
-            <v-card-actions>
-<!--                <ArticleDialogMy1 :parTop="topicID"/>-->
-                <ArticleDialogNewArticleEd :parTop="topicID"/>
-            </v-card-actions>
-            <hr>
-            <v-card-subtitle>
-               topicId {{topicID}}
-            </v-card-subtitle>
-            <hr>
-            <v-card-text>
-                <div v-if="articlesList.length===0">Статей нет</div>
-                <div v-else>
-                    <ArticleCard v-for="(article, i) in articlesList"
-                                 :key="i"
-                                 :article="article" />
-                </div>
-            </v-card-text>
-        </v-card>
+  <v-card
+    id="articleList"
+    class="overflow-y-auto mt-3"
+  >
+    <v-card-title>
+      ArticleList
+    </v-card-title>
+    <v-card-subtitle>
+      <h3>
+        {{ name }}
+      </h3>
+    </v-card-subtitle>
+    <v-card-actions>
+      <!--                <ArticleDialogMy1 :parTop="topicID"/>-->
+      <ArticleDialogNewArticleEd :par-top="topicID" />
+    </v-card-actions>
+    <hr>
+    <v-card-subtitle>
+      topicId {{ topicID }}
+    </v-card-subtitle>
+    <hr>
+    <v-card-text>
+      <div v-if="articlesList.length===0">
+        Статей нет
+      </div>
+      <div v-else>
+        <ArticleCard
+          v-for="(article, i) in articlesList"
+          :key="i"
+          :article="article"
+        />
+      </div>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>
@@ -44,12 +51,12 @@
                 type:Array
             }
         },
-        methods: {
-
-        },
         mounted() {
             console.log('ArticleList Component')
             console.log(this.articlesList)
+        },
+        methods: {
+
         }
     }
 </script>

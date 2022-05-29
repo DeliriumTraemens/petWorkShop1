@@ -1,9 +1,14 @@
 <template>
-<!--    <v-treeview :items="items" dense></v-treeview>-->
-    <div>
-        <h4>{{tree}}</h4>
-    <v-treeview :items="impData" dense selectable  v-model="tree"></v-treeview>
-    </div>
+  <!--    <v-treeview :items="items" dense></v-treeview>-->
+  <div>
+    <h4>{{ tree }}</h4>
+    <v-treeview
+      v-model="tree"
+      :items="impData"
+      dense
+      selectable
+    />
+  </div>
 </template>
 
 <script>

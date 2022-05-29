@@ -1,70 +1,140 @@
 <template>
-
-    <div class="edwrap">
-
-
-        <div class="button-wrap">
-            <span class="mr-2">
-                <v-btn small @click="applyBold" color="blue darken-4"  class="mr-1" >
-                    <v-icon small dark color="yellow"> mdi-format-bold </v-icon>
-                </v-btn>
-                <v-btn small @click="applyItalic" color="blue darken-4"  class="mr-1" >
-                    <v-icon small dark color="yellow"> mdi-format-italic</v-icon>
-                </v-btn>
-            </span>
-            <span class="mr-3">
-                <v-btn small @click="applyHeading">
-                    <v-icon small dark>mdi-format-header-1</v-icon>
-                </v-btn>
-            </span>
-            <!--Align-->
-
-            <span class="mr-3">
-                <v-btn small @click="applyLeft">
-                    <v-icon small dark>mdi-format-align-left</v-icon>
-                </v-btn>
-                <v-btn small @click="applyCenter">
-                    <v-icon small dark>mdi-format-align-center</v-icon>
-                </v-btn>
-                <v-btn small @click="applyRight">
-                    <v-icon small dark>mdi-format-align-right</v-icon>
-                </v-btn>
-            </span>
-            <!--Align-->
-            <span class="mr-3">
-                <v-btn color="default" small  @click="applyUl">
-                    <v-icon small dark>mdi-format-list-bulleted</v-icon>
-                </v-btn>
-                <v-btn small @click="applyOl">
-                    <v-icon small dark>mdi-format-list-numbered</v-icon>
-                </v-btn>
-            </span>
-            <span>
-                <v-btn small @click="undo" color="brown" class="mr-1">
-                    <v-icon small dark color="yellow">mdi-arrow-u-left-bottom</v-icon>
-                </v-btn>
-                <v-btn small @click="redo" color="brown">
-                    <v-icon small dark color="yellow">mdi-arrow-u-right-top</v-icon>
-                </v-btn>
-            </span>
-        </div>
-
-        <div
-                @input="onInput"
-                v-html="innerdata"
-                contenteditable="true"
-                class="wysiwyg-output outline-none border-3 p-6 rounded-lg border-gray-300 focus:border-green-300"
-                id="wised1"
+  <div class="edwrap">
+    <div class="button-wrap">
+      <span class="mr-2">
+        <v-btn
+          small
+          color="blue darken-4"
+          class="mr-1"
+          @click="applyBold"
         >
-                    ddddd
-        </div>
-        <hr class="mb-1 mt-2">
-        <v-btn x-small color="warning">
-            Submit
+          <v-icon
+            small
+            dark
+            color="yellow"
+          > mdi-format-bold </v-icon>
         </v-btn>
+        <v-btn
+          small
+          color="blue darken-4"
+          class="mr-1"
+          @click="applyItalic"
+        >
+          <v-icon
+            small
+            dark
+            color="yellow"
+          > mdi-format-italic</v-icon>
+        </v-btn>
+      </span>
+      <span class="mr-3">
+        <v-btn
+          small
+          @click="applyHeading"
+        >
+          <v-icon
+            small
+            dark
+          >mdi-format-header-1</v-icon>
+        </v-btn>
+      </span>
+      <!--Align-->
+
+      <span class="mr-3">
+        <v-btn
+          small
+          @click="applyLeft"
+        >
+          <v-icon
+            small
+            dark
+          >mdi-format-align-left</v-icon>
+        </v-btn>
+        <v-btn
+          small
+          @click="applyCenter"
+        >
+          <v-icon
+            small
+            dark
+          >mdi-format-align-center</v-icon>
+        </v-btn>
+        <v-btn
+          small
+          @click="applyRight"
+        >
+          <v-icon
+            small
+            dark
+          >mdi-format-align-right</v-icon>
+        </v-btn>
+      </span>
+      <!--Align-->
+      <span class="mr-3">
+        <v-btn
+          color="default"
+          small
+          @click="applyUl"
+        >
+          <v-icon
+            small
+            dark
+          >mdi-format-list-bulleted</v-icon>
+        </v-btn>
+        <v-btn
+          small
+          @click="applyOl"
+        >
+          <v-icon
+            small
+            dark
+          >mdi-format-list-numbered</v-icon>
+        </v-btn>
+      </span>
+      <span>
+        <v-btn
+          small
+          color="brown"
+          class="mr-1"
+          @click="undo"
+        >
+          <v-icon
+            small
+            dark
+            color="yellow"
+          >mdi-arrow-u-left-bottom</v-icon>
+        </v-btn>
+        <v-btn
+          small
+          color="brown"
+          @click="redo"
+        >
+          <v-icon
+            small
+            dark
+            color="yellow"
+          >mdi-arrow-u-right-top</v-icon>
+        </v-btn>
+      </span>
     </div>
 
-
+    <div
+      id="wised1"
+      contenteditable="true"
+      class="wysiwyg-output outline-none border-3 p-6 rounded-lg border-gray-300 focus:border-green-300"
+      @input="onInput"
+      v-html="innerdata"
+    >
+      ddddd
+    </div>
+    <hr class="mb-1 mt-2">
+    <v-btn
+      x-small
+      color="warning"
+    >
+      Submit
+    </v-btn>
+  </div>
 </template>
 
 <script>

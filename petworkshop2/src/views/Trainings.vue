@@ -1,11 +1,11 @@
 <template>
-    <div class="mx-3">
-        <div>FFFFF</div>
-        <h1>Trainings</h1>
-        <hr class="mt-3 mb-3">
-        <hr class="mt-3 mb-3">
-        <DropTrain2 />
-    </div>
+  <div class="mx-3">
+    <div>FFFFF</div>
+    <h1>Trainings</h1>
+    <hr class="mt-3 mb-3">
+    <hr class="mt-3 mb-3">
+    <DropTrain2 />
+  </div>
 </template>
 
 <script>

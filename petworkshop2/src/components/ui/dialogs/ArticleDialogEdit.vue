@@ -1,64 +1,63 @@
 <template>
-    <div>
+  <div>
+    <div class="pt-0.5">
+      <v-btn
+        x-small
+        color="warning"
+        @click.stop="dialog = true"
+      >
+        Edit Article
+      </v-btn>
 
-        <div class="pt-0.5">
+      <v-dialog
+        v-model="dialog"
+        max-width="800px"
+      >
+        <v-card>
+          <v-card-title class="text-h5">
+            Edit The Article id#{{ article.id }} , topic#{{ article.artTopic }}
+          </v-card-title>
+
+          <v-card-text>
+            <hr class="mb-3">
+            <v-text-field
+              v-model="article.name"
+              label="Name"
+            />
+            <!--                        <v-textarea-->
+            <!--                                auto-grow-->
+            <!--                                label="Description"-->
+            <!--                                v-model="article.description" >-->
+            <!--                        </v-textarea>-->
+            <WisiwigEditNewArticle
+              v-model="textdescription"
+              :innerdata="article.description"
+            /> />
+          </v-card-text>
+
+          <v-card-actions>
+            <v-spacer />
+
             <v-btn
-                    x-small
-                    color="warning"
-                    @click.stop="dialog = true">
-                Edit Article
+              color="blue darken-3"
+              text
+              @click="dialog = false"
+            >
+              Cancel
             </v-btn>
 
-            <v-dialog
-                    v-model="dialog"
-                    max-width="800px"
+            <v-btn
+              color="warning darken-4"
+              text
+              @click="saveArticle"
             >
-                <v-card>
-                    <v-card-title class="text-h5">
-                        Edit The Article id#{{article.id}} , topic#{{article.artTopic}}
-                    </v-card-title>
-
-                    <v-card-text>
-
-                        <hr class="mb-3">
-                        <v-text-field label="Name" v-model="article.name" ></v-text-field>
-<!--                        <v-textarea-->
-<!--                                auto-grow-->
-<!--                                label="Description"-->
-<!--                                v-model="article.description" >-->
-<!--                        </v-textarea>-->
-                        <WisiwigEditNewArticle v-model="textdescription" :innerdata="article.description"/> />
-
-                    </v-card-text>
-
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-
-                        <v-btn
-                                color="blue darken-3"
-                                text
-                                @click="dialog = false"
-                        >
-                            Cancel
-                        </v-btn>
-
-                        <v-btn
-                                color="warning darken-4"
-                                text
-                                @click="saveArticle"
-                        >
-                            Submit
-                        </v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-dialog>
-
-        </div>
-
-
-
-
+              Submit
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </div>
+  </div>
 </template>
 
 <script>

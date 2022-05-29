@@ -1,11 +1,10 @@
 <template>
-    <div class="node ml-2">
-        <h2>Tema browser</h2>
-        <div >
-            {{nodes.children}}
-        </div>
-
+  <div class="node ml-2">
+    <h2>Tema browser</h2>
+    <div>
+      {{ nodes.children }}
     </div>
+  </div>
 </template>
 
 <script>

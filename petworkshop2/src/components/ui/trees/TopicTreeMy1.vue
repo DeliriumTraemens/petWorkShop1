@@ -1,35 +1,55 @@
 <template>
-        <div class="mytree1"   >
-            <v-layout justify-space-between @click="itemClicked(items)" >
-                <div >
-                    <span v-if="items.children.length>0" style="font-size:10px; color: darkorange">{{ expanded ? '&#9660;' : '&#9658;'}}</span>
-                    <span v-else style="font-size:10px; color: mediumblue"> &#9671; </span>
-                        {{items.name}}
-                </div>
+  <div class="mytree1">
+    <v-layout
+      justify-space-between
+      @click="itemClicked(items)"
+    >
+      <div>
+        <span
+          v-if="items.children.length>0"
+          style="font-size:10px; color: darkorange"
+        >{{ expanded ? '&#9660;' : '&#9658;' }}</span>
+        <span
+          v-else
+          style="font-size:10px; color: mediumblue"
+        > &#9671; </span>
+        {{ items.name }}
+      </div>
 
-                <v-layout align-start justify-end>
-                    <TopicDialogMy1 :topicData="items" />
+      <v-layout
+        align-start
+        justify-end
+      >
+        <TopicDialogMy1 :topic-data="items" />
 
-                    <v-btn icon>
-                        <v-icon small dark>mdi-minus</v-icon>
-                    </v-btn>
+        <v-btn icon>
+          <v-icon
+            small
+            dark
+          >
+            mdi-minus
+          </v-icon>
+        </v-btn>
 
-                    <TopicEdit1 :topicData="items"/>
+        <TopicEdit1 :topic-data="items" />
 
-<!--                    <v-btn icon @click="editTopic">-->
-<!--                        <v-icon small dark>mdi-pencil</v-icon>-->
-<!--                    </v-btn>-->
-                </v-layout>
+        <!--                    <v-btn icon @click="editTopic">-->
+        <!--                        <v-icon small dark>mdi-pencil</v-icon>-->
+        <!--                    </v-btn>-->
+      </v-layout>
+    </v-layout>
 
-
-            </v-layout>
-
-            <div class="ml-4" v-if="expanded">
-
-                    <TopicTreeMy1 v-for="item in items.children" :key="item.name"
-                                  :items="item"/>
-                </div>
-        </div>
+    <div
+      v-if="expanded"
+      class="ml-4"
+    >
+      <TopicTreeMy1
+        v-for="item in items.children"
+        :key="item.name"
+        :items="item"
+      />
+    </div>
+  </div>
 </template>
 
 <script>

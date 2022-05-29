@@ -1,39 +1,44 @@
 <template>
+  <div>
+    <!--        <div class='drop-zone' @drop="onDrop($event, 1)"-->
+    <!--             @dragover.prevent-->
+    <!--             @dragenter.prevent>-->
+    <!--            <div v-for='item in listOne' :key='item.title'-->
+    <!--                 class='drag-el' draggable-->
+    <!--                 @dragstart="startDrag($event, item)">-->
+    <!--                {{ item.title }}-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        <div class='drop-zone' @drop="onDrop($event, 2)"-->
+    <!--             @dragover.prevent-->
+    <!--             @dragenter.prevent>-->
+    <!--            <div v-for='item in listTwo' :key='item.title' class='drag-el'-->
+    <!--                 draggable-->
+
+    <!--                 @dragstart="startDrag($event, item)" >-->
+    <!--                {{ item.title }}-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <hr>
     <div>
-<!--        <div class='drop-zone' @drop="onDrop($event, 1)"-->
-<!--             @dragover.prevent-->
-<!--             @dragenter.prevent>-->
-<!--            <div v-for='item in listOne' :key='item.title'-->
-<!--                 class='drag-el' draggable-->
-<!--                 @dragstart="startDrag($event, item)">-->
-<!--                {{ item.title }}-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class='drop-zone' @drop="onDrop($event, 2)"-->
-<!--             @dragover.prevent-->
-<!--             @dragenter.prevent>-->
-<!--            <div v-for='item in listTwo' :key='item.title' class='drag-el'-->
-<!--                 draggable-->
-
-<!--                 @dragstart="startDrag($event, item)" >-->
-<!--                {{ item.title }}-->
-<!--            </div>-->
-<!--        </div>-->
-            <hr>
-        <div>
-            <div v-for="tema in topics" :key="tema.name" class="topicOuter"
-                 draggable="true"
-                 @onDrop="onDrop1($event)">
-                <div
-                        draggable="true"
-                        @dragover.prevent
-                        @dragenter.prevent
-                        @dragstart="startDrag1($event, tema)"
-
-                >{{ tema.name }} # {{ tema.id }}</div>
-            </div>
+      <div
+        v-for="tema in topics"
+        :key="tema.name"
+        class="topicOuter"
+        draggable="true"
+        @onDrop="onDrop1($event)"
+      >
+        <div
+          draggable="true"
+          @dragover.prevent
+          @dragenter.prevent
+          @dragstart="startDrag1($event, tema)"
+        >
+          {{ tema.name }} # {{ tema.id }}
         </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>

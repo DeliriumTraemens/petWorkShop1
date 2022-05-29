@@ -1,12 +1,13 @@
 <template>
-    <div>
-        <h2>Items List</h2>
-        <div v-for="item in getSelectedTema.items" :key="item.name">
-            <ItemCard :item="item" />
-
-
-        </div>
+  <div>
+    <h2>Items List</h2>
+    <div
+      v-for="item in getSelectedTema.items"
+      :key="item.name"
+    >
+      <ItemCard :item="item" />
     </div>
+  </div>
 </template>
 
 <script>

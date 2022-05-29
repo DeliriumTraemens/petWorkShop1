@@ -1,39 +1,57 @@
 <template>
-    <div class="node">
-        <v-layout class="lay1" justify-space-between @click="nodeClicked(nodes)" >
+  <div class="node">
+    <v-layout
+      class="lay1"
+      justify-space-between
+      @click="nodeClicked(nodes)"
+    >
+      <div
+        draggable="true"
+        @dragover.prevent
+        @dragenter.prevent
+        @dragstart="startDrag2(nodes)"
+        @drop="onDrop2(nodes)"
+      >
+          <span
+            v-if="nodes.children.length>0"
+            class="type"
+            style="font-size:10px; color: darkorange"
+          >
+            {{ expanded ? '&#9660;' : '&#9658;' }}
+          </span>
+          <span
+            v-else
+            style="font-size:10px; color: mediumblue"
+          > &#9671; </span>
+          {{ nodes.name }}
+      </div>
 
-            <div draggable="true"
-                 @dragover.prevent
-                 @dragenter.prevent
-                 @dragstart="startDrag2(nodes)"
-                 @drop="onDrop2(nodes)" >
-                <span v-if="nodes.children.length>0" class="type" style="font-size:10px; color: darkorange">
-                                {{ expanded ? '&#9660;' : '&#9658;'}}
-                        </span>
-                <span v-else style="font-size:10px; color: mediumblue"> &#9671; </span>
-                {{nodes.name}}
-            </div>
-
-                <v-layout align-start justify-end >
-<!--                    <v-btn x-small icon @click="pressed">-->
-<!--                        <v-icon small dark>-->
-<!--                            mdi-plus-->
-<!--                        </v-icon>-->
-<!--                    </v-btn>-->
-                    <AddSubTemaDialog :temaData="nodes"/>
-                </v-layout>
-        </v-layout>
+      <v-layout
+        align-start
+        justify-end
+      >
+        <!--                    <v-btn x-small icon @click="pressed">-->
+        <!--                        <v-icon small dark>-->
+        <!--                            mdi-plus-->
+        <!--                        </v-icon>-->
+        <!--                    </v-btn>-->
+        <AddSubTemaDialog :tema-data="nodes" />
+      </v-layout>
+    </v-layout>
 
 
-        <div v-if="expanded" class="ml-3">
-            <TemaBrowser2
-                    v-for="(child, indx) in nodes.children" :key="indx"
-                    :nodes="child"
-                    :depth="depth + 1"
-            />
-        </div>
-
+    <div
+      v-if="expanded"
+      class="ml-3"
+    >
+      <TemaBrowser2
+        v-for="(child, indx) in nodes.children"
+        :key="indx"
+        :nodes="child"
+        :depth="depth + 1"
+      />
     </div>
+  </div>
 </template>
 
 <script>

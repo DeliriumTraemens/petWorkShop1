@@ -1,16 +1,28 @@
 <template>
-    <v-expansion-panels class="mt-4">
-        <v-expansion-panel>
-            <v-expansion-panel-header>
-                <strong>TopicNewRootForm2 —> Add new Root Topic</strong>
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-                <v-text-field label="Input Topic Name" v-model="topic.name" />
-                <v-text-field label="Input Topic Description" v-model="topic.description" />
-                <v-btn color="warning" x-small @click="submitNewRootTopic" >Submit</v-btn>
-            </v-expansion-panel-content>
-        </v-expansion-panel>
-    </v-expansion-panels>
+  <v-expansion-panels class="mt-4">
+    <v-expansion-panel>
+      <v-expansion-panel-header>
+        <strong>TopicNewRootForm2 —> Add new Root Topic</strong>
+      </v-expansion-panel-header>
+      <v-expansion-panel-content>
+        <v-text-field
+          v-model="topic.name"
+          label="Input Topic Name"
+        />
+        <v-text-field
+          v-model="topic.description"
+          label="Input Topic Description"
+        />
+        <v-btn
+          color="warning"
+          x-small
+          @click="submitNewRootTopic"
+        >
+          Submit
+        </v-btn>
+      </v-expansion-panel-content>
+    </v-expansion-panel>
+  </v-expansion-panels>
 </template>
 
 <script>

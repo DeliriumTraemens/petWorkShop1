@@ -1,54 +1,52 @@
 <template>
-    <v-row>
-        <h2>Drop Train 2 2 aa</h2>
-          <v-col>
-              <TemaBrowser2
-                      v-for="nodes in getTemaTotal" :key="nodes.id"
-                      :nodes="nodes" />
-              <hr class="my-4">
-              <v-card class="mb-3">
-                  <v-card-title> Initial topic</v-card-title>
-                  <v-card-text>
-                      {{draggedTopic.name}}
-                  </v-card-text>
-              </v-card>
-              <v-card>
-                  <v-card-title>Target Topic</v-card-title>
-                  <v-card-text>
-                      {{droppedTopic.name}}
-                  </v-card-text>
-              </v-card>
-              <hr class="my-5">
+  <v-row>
+    <h2>Drop Train 2 2 aa</h2>
+    <v-col>
+      <TemaBrowser2
+        v-for="nodes in getTemaTotal"
+        :key="nodes.id"
+        :nodes="nodes"
+      />
+      <hr class="my-4">
+      <v-card class="mb-3">
+        <v-card-title> Initial topic</v-card-title>
+        <v-card-text>
+          {{ draggedTopic.name }}
+        </v-card-text>
+      </v-card>
+      <v-card>
+        <v-card-title>Target Topic</v-card-title>
+        <v-card-text>
+          {{ droppedTopic.name }}
+        </v-card-text>
+      </v-card>
+      <hr class="my-5">
 
-              <v-card class="mb-3">
-                  <v-card-title> Initial browser topic</v-card-title>
-                  <v-card-text>
-                      {{getTemaDragged.name}}
-                  </v-card-text>
-              </v-card>
-              <v-card>
-                  <v-card-title>Target browser Topic</v-card-title>
-                  <v-card-text>
-                      {{getTemaDropped.name}}
-                  </v-card-text>
-              </v-card>
+      <v-card class="mb-3">
+        <v-card-title> Initial browser topic</v-card-title>
+        <v-card-text>
+          {{ getTemaDragged.name }}
+        </v-card-text>
+      </v-card>
+      <v-card>
+        <v-card-title>Target browser Topic</v-card-title>
+        <v-card-text>
+          {{ getTemaDropped.name }}
+        </v-card-text>
+      </v-card>
+    </v-col>
+    <v-col>
+      <ItemList />
+    </v-col>
+    <v-col>
+      <ItemForm />
+      <hr class="my-5">
+      <TemaForm />
 
-        </v-col>
-        <v-col>
-            <ItemList />
-        </v-col>
-        <v-col>
-            <ItemForm />
-            <hr class="my-5">
-            <TemaForm />
-
-              <hr class="my-4">
-
-
-        </v-col>
-        <hr class="mb-3">
-
-    </v-row>
+      <hr class="my-4">
+    </v-col>
+    <hr class="mb-3">
+  </v-row>
 </template>
 
 <script>

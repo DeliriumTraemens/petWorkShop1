@@ -1,63 +1,77 @@
 <template>
-    <div>
-        <h1>Articles</h1>
-        <v-row>
-            <v-col cols="4">
-                <div class="px-2">
-                    <h1>Col 1</h1>
-                <TopicTreeExpansion2 :data="getTopicsTotalList"/>
-                    <hr class="mb-4">
-                    <!-- Tree Browser -->
-                    <div>TreeBrowser</div>
-                    <hr class="mb-4 mt-4">
-                    <TreeBrowser
-                            v-for="node in getTopicsTotalList" :key="node.id"
-                            :node="node" />
-                </div>
-            </v-col >
-            <v-col cols="4" >
-                <h1 >Col 2</h1>
+  <div>
+    <h1>Articles</h1>
+    <v-row>
+      <v-col cols="4">
+        <div class="px-2">
+          <h1>Col 1</h1>
+          <TopicTreeExpansion2 :data="getTopicsTotalList" />
+          <hr class="mb-4">
+          <!-- Tree Browser -->
+          <div>TreeBrowser</div>
+          <hr class="mb-4 mt-4">
+          <TreeBrowser
+            v-for="node in getTopicsTotalList"
+            :key="node.id"
+            :node="node"
+          />
+        </div>
+      </v-col>
+      <v-col cols="4">
+        <h1>Col 2</h1>
 
-                <div >
-                    <v-btn @click="isActive=!isActive">Show</v-btn>
-                    <h3 :class="{isActive}">Articles dd</h3>
-                </div>
-                <div>
-                    <hr class="mb-3">
-                    <h3>sss
-                        {{getTopicsSelectedTopicId}}
-                    </h3>
-                    <v-btn @click="incrementSelectedId">Increment</v-btn>
-                    <hr>
-                    <v-text-field label="Set Value" v-model="value"></v-text-field>
-                    <v-btn @click="setValue">Set Value</v-btn>
-                    <hr>
-                </div>
-                <div class="my-3" >
-                    <p>Article List Component</p>
-                    <p>articlesList= getSelectedTopic.articleSet</p>
-                    <!-- Article List Component -->
-                    <ArticleList :name="getSelectedTopic.name"
-                                 :topicID="getSelectedTopic.id"
-                                 :articlesList="getSelectedTopic.articleSet" />
-                </div>
-                <hr>
+        <div>
+          <v-btn @click="isActive=!isActive">
+            Show
+          </v-btn>
+          <h3 :class="{isActive}">
+            Articles dd
+          </h3>
+        </div>
+        <div>
+          <hr class="mb-3">
+          <h3>
+            sss
+            {{ getTopicsSelectedTopicId }}
+          </h3>
+          <v-btn @click="incrementSelectedId">
+            Increment
+          </v-btn>
+          <hr>
+          <v-text-field
+            v-model="value"
+            label="Set Value"
+          />
+          <v-btn @click="setValue">
+            Set Value
+          </v-btn>
+          <hr>
+        </div>
+        <div class="my-3">
+          <p>Article List Component</p>
+          <p>articlesList= getSelectedTopic.articleSet</p>
+          <!-- Article List Component -->
+          <ArticleList
+            :name="getSelectedTopic.name"
+            :topic-i-d="getSelectedTopic.id"
+            :articles-list="getSelectedTopic.articleSet"
+          />
+        </div>
+        <hr>
+      </v-col>
+      <v-col cols="4">
+        <h1>Col 3</h1>
 
-            </v-col>
-            <v-col cols="4">
-                <h1>Col 3</h1>
-
-                <TopicNewRootForm2 />
-                <hr class="mb-5">
-                scroller
-<!--                <Scroller1 />-->
-                <hr class="mb-5">
-                <TopicCard2  :data="getSelectedTopic" />
-                <hr class="mb-5">
-
-            </v-col>
-        </v-row>
-    </div>
+        <TopicNewRootForm2 />
+        <hr class="mb-5">
+        scroller
+        <!--                <Scroller1 />-->
+        <hr class="mb-5">
+        <TopicCard2 :data="getSelectedTopic" />
+        <hr class="mb-5">
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
